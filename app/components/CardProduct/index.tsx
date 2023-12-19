@@ -4,16 +4,14 @@ interface Products {
     image: string,
     descont: string,
     price: string,
-    id: number,
-  }
-  
+    index: number,
+}
+
+
 export default async function CardProduct(props: Products) {
-
-    await new Promise((resolve) => setTimeout(resolve, 1500 * props.id))
-
     return(
         <div
-            className='flex justify-center items-center flex-col w-9/12 h-[280px] bg-h-white-200 my-5 p-3 pb-1 rounded-[8px] relative overflow-hidden'
+        className="flex justify-center items-center flex-col w-9/12 h-[280px] bg-h-white-200 my-5 p-3 pb-1 rounded-[8px] relative overflow-hidden"
         >
             <p
             className={`text-black text-1xl block text-center mt-5 w-auto mx-auto p-2 ${Number(props.descont) >= 35 ? 'bg-green-400' : 'bg-red-400'} rounded-bl-3xl absolute -top-5 right-0 px-3`}>
@@ -22,8 +20,8 @@ export default async function CardProduct(props: Products) {
             <Image
                 alt={props.price}
                 src={props.image}
-                width={280}
-                height={300}
+                width={250}
+                height={175}
                 className='mx-auto rounded-[8px]'
             />
             

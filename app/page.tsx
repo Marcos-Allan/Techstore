@@ -24,6 +24,7 @@ interface Products {
 import { Suspense } from 'react'
 import Loading from "./components/CardProduct/loading"
 import Message from "./components/Message"
+import ToggleDarkMode from "./components/ToggleDarkMode"
 
 export default async function Home() {
 
@@ -31,7 +32,7 @@ export default async function Home() {
 
   return (
     <div className='bg-h-white-100 overflow-y-scroll w-full min-h-full overflow-x-hidden flex flex-col flex-wrap justify-center wrap items-center pt-4'>
-
+      <ToggleDarkMode />
       {produtos.map((product:Products, index:number) => (
         <Suspense fallback={<Loading />}>
 
@@ -40,7 +41,7 @@ export default async function Home() {
             image={product.image}
             price={product.price}
             key={index}
-            id={index}
+            index={index}
           />
         </Suspense>
       ))}
