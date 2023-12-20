@@ -9,7 +9,7 @@ export default function Message() {
     const provider = new GoogleAuthProvider();
 
     function login(){
-        signInWithPopup(auth, provider)
+        signInWithRedirect(auth, provider)
         .then((result) => {
             const cred = GoogleAuthProvider.credentialFromResult(result)
             console.log(cred)
@@ -47,7 +47,7 @@ export default function Message() {
             >Parece que você ainda não fez login, faça para aproveitar o maximo possivel dos dados</p>
             <div
                 onClick={() => login()}
-                className="absolute w-full bottom-[50px] left-0 bg-h-gray-300 flex items-center py-2 justify-center h-[46px]"
+                className="absolute w-full bottom-[50px] left-0 bg-h-gray-300 flex items-center py-2 justify-center h-[46px] hover:opacity-70 transition-opacity"
             >
                 <p
                     className="text-center"
@@ -57,7 +57,7 @@ export default function Message() {
             </div>
             <div
                 onClick={() => logout()}
-                className="absolute w-full bottom-0 left-0 bg-h-gray-300 flex items-center py-2 justify-center h-[46px]"
+                className="absolute w-full bottom-0 left-0 bg-h-gray-300 flex items-center py-2 justify-center h-[46px] hover:opacity-70 transition-opacity"
             >
                 <p
                     className="text-center"

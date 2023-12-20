@@ -1,3 +1,4 @@
+import Menu from '@/app/components/Menu'
 import './globals.css'
 import { Aldrich } from 'next/font/google'
 
@@ -11,7 +12,8 @@ export const metadata = {
 export default function RootLayout({children}) {
   return (
     <html lang="en">
-      <body className={aldrich.className}>
+      <body className={`${aldrich.className} pt-[120px]`}>
+          <Menu />
           {children}
       </body>
     </html>
