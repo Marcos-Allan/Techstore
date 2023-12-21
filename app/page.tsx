@@ -26,6 +26,7 @@ import Loading from "./components/CardProduct/loading"
 import Message from "./components/Message"
 import ToggleDarkMode from "./components/ToggleDarkMode"
 import Categories from "./components/Categories"
+import ScrollToTop from "./components/ScrollToTop"
 
 export default async function Home() {
 
@@ -44,10 +45,12 @@ export default async function Home() {
             price={product.price}
             key={index}
             index={index}
+            starNumber={5-index}
           />
         </Suspense>
       ))}
-      <Message />
+      {/* <Message /> */}
+      <ScrollToTop />
     </div>
   )
 }

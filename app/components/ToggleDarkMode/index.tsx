@@ -1,5 +1,8 @@
 'use client'
 
+import { HiSun } from "react-icons/hi";
+import { HiMoon } from "react-icons/hi";
+
 import { useState, useEffect } from 'react'
 
 export default function ToggleDarkMode(){
@@ -18,24 +21,22 @@ export default function ToggleDarkMode(){
     
     return (
         <div
-            className='flex justify-between flex-col items-center'
+            className='flex justify-between items-center gap-3'
         >
             <p
                 className='text-black'
             >
-                Você Esta No Modo {darkMode == true ? 'Dark' : 'Light'}
+                Você Esta No Modo {darkMode == true ? 'Escuro' : 'Claro'}
             </p>
             <div
-                className='bg-h-gray-300 py-1 px-2 mt-4 rounded-[8px] hover:opacity-70 transition-opacity'
+                className='bg-h-gray-300 hover:opacity-70 transition-opacity p-1 rounded-[50%] flex justify-between items-center flex-row'
                 onClick={() => {
                     setDarkMode(!darkMode)
                     const mode = darkMode == false ?  'dark' : 'light'
                     localStorage.setItem('tema', mode)
                 }}
             >
-                <p
-                    className='text-white text-[14px]'
-                >{darkMode == true ? 'DARK' : 'LIGHT'} MODE</p>
+                {darkMode == true ? <HiMoon className='text-white text-[28px]' /> : <HiSun className='text-white text-[28px]' />}
             </div>
         </div>
     )
