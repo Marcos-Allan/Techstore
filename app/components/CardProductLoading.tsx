@@ -1,4 +1,4 @@
-export default function Loading(){
+export default function CardProductLoading(){
     return (
         <div
             className='flex justify-center items-center flex-col w-9/12 h-[280px] bg-transparent my-5 p-3 pb-1 rounded relative overflow-hidden bg-gray-200'
