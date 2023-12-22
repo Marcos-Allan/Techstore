@@ -23,11 +23,6 @@ export default function ToggleDarkMode(){
         <div
             className='flex justify-between items-center gap-3'
         >
-            <p
-                className='text-black'
-            >
-                Você Esta No Modo {darkMode == true ? 'Escuro' : 'Claro'}
-            </p>
             <div
                 className='bg-h-gray-300 hover:opacity-70 transition-opacity p-1 rounded-[50%] flex justify-between items-center flex-row'
                 onClick={() => {
@@ -38,6 +33,11 @@ export default function ToggleDarkMode(){
             >
                 {darkMode == true ? <HiMoon className='text-white text-[28px]' /> : <HiSun className='text-white text-[28px]' />}
             </div>
+            <p
+                className='text-black flex-grow-[1] text-left'
+            >
+                Você Esta No Modo {darkMode == true ? 'Escuro' : 'Claro'}
+            </p>
         </div>
     )
 }   

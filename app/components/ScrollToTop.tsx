@@ -9,7 +9,7 @@ export default function ScrollToTop(){
             className='fixed bg-h-gray-300 right-3 bottom-3 p-3 rounded-[50%] opacity-100 hover:opacity-40'
         >
             <HiArrowNarrowUp
-                className='text-[30px]'
+                className='text-[30px] text-h-white-100'
             />
         </div>
     )

@@ -1,24 +1,11 @@
 import CardProduct from "@/app/components/CardProduct"
-
-async function getData(){
-    const res = await fetch('https://techstore-backend.onrender.com/products/')
-    
-    const data = await res.json()
-    return data
-    // console.log(JSON.stringify(data))
-
-    // if(!res.ok){
-    //   console.log("Falha ao carrgar Dados")
-    //   const data = { message: 'Falha na conexão ao MongoDB verifique a URL' }
-    //   return data
-    // }
-    
-} 
+import { getProducts } from "./actions"
 
 interface Products {
   image: string,
   descont: string,
   price: string,
+  _id: string
 }
   
 import { Suspense } from 'react'
@@ -28,7 +15,8 @@ import ScrollToTop from "./components/ScrollToTop"
 
 export default async function Home() {
 
-  const produtos = await getData()
+  const produtos = await getProducts()
+  console.log(produtos)
 
   return (
     <div className='bg-h-white-100 overflow-y-scroll w-full min-h-full overflow-x-hidden flex flex-col flex-wrap justify-center wrap items-center pt-4'>
@@ -43,6 +31,7 @@ export default async function Home() {
             key={index}
             index={index}
             starNumber={5-index}
+            id={product._id}
           />
         </Suspense>
       ))}

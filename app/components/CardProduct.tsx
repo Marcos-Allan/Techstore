@@ -1,6 +1,6 @@
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { HiStar } from "react-icons/hi";
-
+import Link from 'next/link'
 import Image from 'next/image'
 
 interface Products {
@@ -8,7 +8,8 @@ interface Products {
     descont: string,
     price: string,
     index: number,
-    starNumber: number
+    starNumber: number,
+    id: string,
 }
 
 
@@ -17,9 +18,12 @@ export default async function CardProduct(props: Products) {
             <div
                 className="flex justify-center items-center flex-col w-9/12 h-[290px] bg-h-white-200 mb-10 p-3 pb-1 rounded-[8px] relative overflow-hidden flex-grou-[1]"
             >
-                <HiOutlineInformationCircle
-                    className='absolute top-0 left-0 text-black text-[32px] p-1 bg-h-white-200 rounded-[50%]'
-                />
+                <Link href={`/product/${props.id}`}>
+                    <HiOutlineInformationCircle
+                        className='absolute top-0 left-0 text-black text-[32px] p-1 bg-h-white-200 rounded-[50%]'
+                    />
+                </Link>
+
                 <p
                 className={`text-black text-1xl block text-center mt-5 w-auto mx-auto p-2 ${Number(props.descont) >= 35 ? 'bg-green-400' : 'bg-red-400'} rounded-bl-3xl absolute -top-5 right-0 px-3`}>
                     {props.descont}%
