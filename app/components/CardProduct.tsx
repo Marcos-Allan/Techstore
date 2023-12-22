@@ -14,6 +14,7 @@ interface Products {
 
 
 export default async function CardProduct(props: Products) {
+    await new Promise((resolve) => setTimeout(resolve, 3000))
     return(
             <div
                 className="flex justify-center items-center flex-col w-9/12 h-[290px] bg-h-white-200 mb-10 p-3 pb-1 rounded-[8px] relative overflow-hidden flex-grou-[1]"

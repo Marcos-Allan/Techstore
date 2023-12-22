@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({children}) {
   return (
     <html lang="en">
-      <body className={`${aldrich.className} pt-[120px]`}>
+      <body className={`${aldrich.className} max-h-screen overflow-y-auto bg-h-white-100`}>
           <Menu />
           {children}
       </body>
