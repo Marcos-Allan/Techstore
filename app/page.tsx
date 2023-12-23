@@ -12,20 +12,14 @@ import { Suspense } from 'react'
 import CardProductLoading from "./components/CardProductLoading"
 import Categories from "./components/Categories"
 import ScrollToTop from "./components/ScrollToTop"
+import Screen from "./components/Screen"
 
 export default async function Home() {
 
   const produtos = await getProducts()
-  console.log(produtos[0]._id)
-  console.log(produtos[1]._id)
-  console.log(produtos[2]._id)
-  console.log(produtos[3]._id)
-  console.log(produtos[4]._id)
-  console.log(produtos[5]._id)
-  console.log(produtos[6]._id)
 
   return (
-    <div className='bg-h-white-100 overflow-y-scroll w-full min-h-screen overflow-x-hidden flex flex-col flex-wrap justify-center wrap items-center pt-[136px]'>
+    <Screen>
       <Categories />
       {produtos.map((product:Products, index:number) => (
         <Suspense fallback={<CardProductLoading />}>
@@ -43,6 +37,6 @@ export default async function Home() {
       ))}
       {/* <Message /> */}
       <ScrollToTop />
-    </div>
+    </Screen>
   )
 }
