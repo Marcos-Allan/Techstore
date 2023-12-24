@@ -25,7 +25,7 @@ export default function ToggleDarkMode(){
     
     return (
         <div
-            className='flex justify-between items-center gap-3'
+            className='flex justify-center flex-row items-center gap-3'
             onClick={() => {
                 localStorage.setItem('tema', theme)
                 toggleTheme()
@@ -33,18 +33,20 @@ export default function ToggleDarkMode(){
         >
             <div
                 className={`
-                ${theme == 'light' ? 'bg-h-gray-300' : 'bg-h-white-200'}
-                hover:opacity-70 transition-opacity p-1 rounded-[50%] flex justify-between items-center flex-row`}
+                ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}
+                hover:opacity-70 transition-opacity rounded-[50%] p-2`}
             >
                 {theme == 'light'
-                    ? <HiSun className='text-white text-[28px]' />
-                    : <HiMoon className='text-black text-[28px]' />
+                    ? <HiSun className='text-h-gray-300 text-[28px]' />
+                    : <HiMoon className='text-h-white-200 text-[28px]' />
                 }
             </div>
             <p
                 className={`
                 ${theme == 'light' ? 'text-black' : 'text-white'}
+                ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}
                 flex-grow-[1] text-left
+                w-full ps-3 -ms-[18px] py-[2px] rounded-r-[10px]
                 `}
             >
                 Você Esta No Modo {theme == 'light' ? 'Claro' : 'Escuro'}

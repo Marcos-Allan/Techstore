@@ -1,4 +1,7 @@
 'use client'
+import { useLayoutEffect } from 'react'
+import { gsap } from "gsap";
+
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { HiStar } from "react-icons/hi";
 import Link from 'next/link'
@@ -16,6 +19,15 @@ interface Products {
 
 
 export default function CardProduct(props: Products) {
+    
+    useLayoutEffect(() => {
+        gsap.to(".card", {
+            x: 0,
+            duration: 0.850,
+            delay: 1+props.index,
+            ease: 'linear',
+          });
+    },[])
 
     const states:any = useThemeContext()
     const { theme, toggleTheme} = states
@@ -23,6 +35,8 @@ export default function CardProduct(props: Products) {
     return(
             <div
                 className={`
+                    card
+                    ${props.index % 2 == 0 ? 'translate-x-[700px]' : '-translate-x-[700px]'}
                     ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}
                     flex justify-center items-center flex-col w-9/12 h-[290px]
                     mb-10 p-3 pb-1 rounded-[8px] relative overflow-hidden flex-grou-[1]

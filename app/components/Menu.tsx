@@ -48,7 +48,7 @@ export default function Menu() {
                         >Criar Conta</p>
                     </div>
                     
-                    <div className={`flex-1 flex justify-center py-1 items-center
+                    <Link href={'/login'} className={`flex-1 flex justify-center py-1 items-center
                     rounded-[8px] hover:opacity-50
                     ${theme == 'light' ? 'bg-h-gray-300' : 'bg-h-white-200'}`
                     }>
@@ -56,7 +56,7 @@ export default function Menu() {
                             className={`text-[12px] text-center
                             ${theme == 'light' ? 'text-white' : 'text-black'}`}
                         >Conecte-se</p>
-                    </div>
+                    </Link>
 
                     <div
                         onClick={() => setOpen(true)}
@@ -90,9 +90,10 @@ export default function Menu() {
                 )}
             </div>
 
+            {/* MENU LATERAL MOBILE */}
             <div
                 className={`
-                ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}
+                ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
                 w-full h-[110%]
                 block fixed top-0 ${open == true ? '-left-[0%]' : '-left-[100%]'} z-[4] p-5 transition-all
                 `}
