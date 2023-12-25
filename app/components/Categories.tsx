@@ -20,7 +20,9 @@ export default function Categories(){
     return(
         <div className={`
             ${theme == 'light' ? 'bg-h-white-200 text-black' : 'bg-h-gray-300 text-gray-50'}
-            text-[14px] flex justify-between w-10/12 px-2 py-1 rounded-[32px] my-4`}
+            text-[14px] flex justify-between w-10/12 px-2 py-1 rounded-[32px] my-4
+            lg:w-8/12
+            `}
         >
             <p
                 className={`flex-grow-[1] text-center h-[32px] flex items-center justify-center

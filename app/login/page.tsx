@@ -7,11 +7,10 @@ export default function Login() {
 
     const states:any = useThemeContext()
     const { theme, toggleTheme} = states
-    console.log(theme)
 
     return(
         <div
-            className={`w-full h-full flex items-center justify-center ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'} overflow-y-hidden`}
+            className={`w-full h-full flex items-center justify-center ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'} overflow-y-hidden lg:px-[270px]`}
         >
             <div
                 className={`${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'} w-[80%] p-6 rounded-[8px]`}

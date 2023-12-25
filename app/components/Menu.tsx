@@ -28,6 +28,7 @@ export default function Menu() {
                     ${isProductInfo() === true ? 'h-[80px]' : 'h-[120px]'}
                     ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}
                     px-6 py-3 flex justify-around items-center flex-wrap w-full fixed top-0 left-0 z-[2]
+                    lg:px-[270px] lg:left-auto
                 `}
             >
                 <Link
@@ -136,30 +137,6 @@ export default function Menu() {
             </div>
 
             {/* MENU LATERAL MOBILE */}
-            <div
-                className={`
-                ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
-                w-full h-[110%] duration-500
-                block fixed top-0 ${open == true ? '-left-[0%]' : '-left-[100%]'} z-[4] p-5 transition-all
-                `}
-            >
-                <p
-                    className={`
-                    ${theme == 'light' ? 'text-black' : 'text-white'}
-                    text-[24px]`}
-                >
-                    TechStore Menu
-                </p>
-                <HiX
-                    onClick={() => setOpen(false)}
-                    className={`
-                    ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'}
-                    absolute top-0 right-0 text-[32px]
-                    m-5
-                    `}
-                />
-                <ToggleDarkMode />
-            </div>
         </>
     )
 }

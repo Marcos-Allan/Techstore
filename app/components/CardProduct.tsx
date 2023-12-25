@@ -40,6 +40,7 @@ export default function CardProduct(props: Products) {
                     ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}
                     flex justify-center items-center flex-col w-9/12 h-[290px]
                     mb-10 p-3 pb-1 rounded-[8px] relative overflow-hidden flex-grou-[1]
+                    lg:w-4/12 lg:mx-5 lg:translate-x-[0px]
                 `}
             >
                 <Link href={`/product/${props.id}`}>

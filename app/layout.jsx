@@ -1,4 +1,5 @@
 import Menu from '@/app/components/Menu'
+import SideNav from './components/SideNav'
 import './globals.css'
 import { Aldrich } from 'next/font/google'
 
@@ -15,7 +16,7 @@ export default function RootLayout({children}) {
   return (
     <Provider>
       <html lang="pt-br">
-        <body className={`${aldrich.className} max-h-screen overflow-y-auto bg-h-white-100`}>
+        <body className={`${aldrich.className} bg-h-white-100`}>
           <Menu />
           {children}
         </body>
