@@ -67,8 +67,8 @@ export default function CardProduct(props: Products) {
                     alt={props.price}
                     src={props.image}
                     width={250}
-                    height={175}
-                    className='mx-auto rounded-[8px]'
+                    height={148}
+                    className='mx-auto rounded-[8px] w-[250px] h-[148px]'
                 />
                 
                 <div className="flex justify-between items-center w-full mt-2 h-auto">

@@ -65,6 +65,9 @@ export default function Menu() {
 
                     <div
                         onClick={() => setOpenSearch(true)}
+                        className={`
+                            flex justify-center py-1 items-center flex-col rounded-[8px] hover:opacity-50
+                        `}
                     >
                         <HiSearch
                             className={`
@@ -82,7 +85,7 @@ export default function Menu() {
 
                     <div
                         onClick={() => toggleMenuOpen()}
-                        className="flex justify-center items-center flex-col"
+                        className="flex lg:hidden justify-center items-center flex-col py-1 rounded-[8px] hover:opacity-50"
                     >
                         <HiOutlineMenu
                             className={`
@@ -101,7 +104,7 @@ export default function Menu() {
 
             </div>
                 <div className={`
-                    w-full h-[110%] fixed ${openSearch == true ? 'top-0' : '-top-[110%]'} left-0 z-50 opacity-95 flex justify-center items-start transition-all duration-500
+                    w-full h-[110%] fixed ${openSearch == true ? 'top-0' : '-top-[110%]'} left-0 z-[51] opacity-95 flex justify-center items-start transition-all duration-500
                     ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
                 `}>
                 <div

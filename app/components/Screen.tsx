@@ -10,7 +10,11 @@ export default function Screen({children}:{children:React.ReactNode}){
         <div className={`
             ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
             w-full min-h-screen overflow-x-hidden flex flex-wrap flex-row justify-center items-center pt-[80px]
-            lg:flex-row
+            lg:flex-row scrollbar-none lg:scrollbar-thin
+            ${theme == 'light'
+                ? 'lg:scrollbar-track-h-white-200 lg:scrollbar-thumb-h-gray-300'
+                : 'lg:scrollbar-track-h-gray-300 lg:scrollbar-thumb-h-white-200'
+            }
             `}
         >
             {children}
