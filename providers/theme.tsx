@@ -1,20 +1,27 @@
 'use client'
 import { useState, createContext, useContext } from 'react'
 
-export const ThemeContext = createContext({})
+export const MyContext = createContext({})
 
-export const ThemeProvider = ({ children } : { children: React.ReactNode }) => {
+export const MyProvider = ({ children } : { children: React.ReactNode }) => {
     const themeAplicked = localStorage.getItem('tema') == 'light' ? 'dark' : 'light'
     const [theme, setTheme] = useState<string | null>(themeAplicked ? themeAplicked : 'light')
+
+    const [menuOpen, setMenuOpen] = useState<boolean>(false)
+
+    const toggleMenuOpen = () => {
+        setMenuOpen(!menuOpen)
+    }
+
     const toggleTheme = () => {
         setTheme(theme == 'light' ? 'dark' : 'light')
     }
     
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <MyContext.Provider value={{ theme, toggleTheme, menuOpen, toggleMenuOpen }}>
             {children}
-        </ThemeContext.Provider>
+        </MyContext.Provider>
     )
 }
 
-export const useThemeContext = () => useContext(ThemeContext)
+export const useMyContext = () => useContext(MyContext)

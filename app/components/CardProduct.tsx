@@ -6,7 +6,7 @@ import { HiOutlineInformationCircle } from "react-icons/hi";
 import { HiStar } from "react-icons/hi";
 import Link from 'next/link'
 import Image from 'next/image'
-import { useThemeContext } from "@/providers/theme";
+import { useMyContext } from "@/providers/theme";
 
 interface Products {
     image: string,
@@ -29,7 +29,7 @@ export default function CardProduct(props: Products) {
           });
     },[])
 
-    const states:any = useThemeContext()
+    const states:any = useMyContext()
     const { theme, toggleTheme} = states
 
     return(

@@ -4,12 +4,12 @@ import { gsap } from "gsap";
     
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import { useThemeContext } from "@/providers/theme";
+import { useMyContext } from "@/providers/theme";
 import { HiArrowNarrowUp } from "react-icons/hi";
 
 export default function ScrollToTop(){
 
-    const states:any = useThemeContext()
+    const states:any = useMyContext()
     const { theme } = states
 
     useLayoutEffect(() => {

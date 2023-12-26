@@ -4,11 +4,11 @@ import { HiSun } from "react-icons/hi";
 import { HiMoon } from "react-icons/hi";
 
 import { useState, useEffect } from 'react'
-import { useThemeContext } from "@/providers/theme";
+import { useMyContext } from "@/providers/theme";
 
 export default function ToggleDarkMode(){
     
-    const states:any = useThemeContext()
+    const states:any = useMyContext()
     const { theme, toggleTheme} = states
 
     const [darkMode, setDarkMode] = useState<boolean>(localStorage.getItem('tema') == 'dark' ? true : false)

@@ -7,11 +7,11 @@ import { HiSearch } from "react-icons/hi";
 import ToggleDarkMode from './ToggleDarkMode';
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useThemeContext } from '@/providers/theme'
+import { useMyContext } from '@/providers/theme'
 
 export default function Menu() {
-    const states:any = useThemeContext()
-    const { theme, toggleTheme} = states
+    const states:any = useMyContext()
+    const { theme, toggleTheme, menuOpen, toggleMenuOpen} = states
     
     const pathname = usePathname()
     const [open, setOpen] = useState<boolean>(false)
@@ -81,7 +81,7 @@ export default function Menu() {
                     </div>
 
                     <div
-                        onClick={() => setOpen(true)}
+                        onClick={() => toggleMenuOpen()}
                         className="flex justify-center items-center flex-col"
                     >
                         <HiOutlineMenu

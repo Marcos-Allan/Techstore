@@ -1,5 +1,5 @@
 'use client'
-import { useThemeContext } from '@/providers/theme'
+import { useMyContext } from '@/providers/theme'
 import Image from 'next/image'
 
 interface Product{
@@ -10,7 +10,7 @@ interface Product{
 
 export default function Product(product: Product){
 
-    const states:any = useThemeContext()
+    const states:any = useMyContext()
     const { theme, toggleTheme} = states
 
     return(

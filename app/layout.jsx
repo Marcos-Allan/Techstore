@@ -1,5 +1,4 @@
 import Menu from '@/app/components/Menu'
-import SideNav from './components/SideNav'
 import './globals.css'
 import { Aldrich } from 'next/font/google'
 

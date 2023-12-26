@@ -1,11 +1,11 @@
 'use client'
 import Image from 'next/image'
 import googleIcon from '@/public/Google_icon.png'
-import { useThemeContext } from '@/providers/theme'
+import { useMyContext } from '@/providers/theme'
 
 export default function Login() {
 
-    const states:any = useThemeContext()
+    const states:any = useMyContext()
     const { theme, toggleTheme} = states
 
     return(

@@ -1,9 +1,9 @@
 'use client'
-import { useThemeContext } from "@/providers/theme"
+import { useMyContext } from "@/providers/theme"
 
 export default function Screen({children}:{children:React.ReactNode}){
 
-    const states:any = useThemeContext()
+    const states:any = useMyContext()
     const { theme, toggleTheme} = states
 
     return(

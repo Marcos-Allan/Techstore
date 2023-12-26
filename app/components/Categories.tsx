@@ -1,5 +1,5 @@
 'use client'
-import { useThemeContext } from '@/providers/theme'
+import { useMyContext } from '@/providers/theme'
 import { useState } from  'react'
 
 export default function Categories(){
@@ -14,7 +14,7 @@ export default function Categories(){
         setCategory(categorySet)
     }
 
-    const states:any = useThemeContext()
+    const states:any = useMyContext()
     const { theme, toggleTheme} = states
 
     return(
