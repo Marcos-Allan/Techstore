@@ -15,6 +15,7 @@ export const MyProvider = ({ children } : { children: React.ReactNode }) => {
 
     const toggleTheme = () => {
         setTheme(theme == 'light' ? 'dark' : 'light')
+        localStorage.setItem('tema', theme ? theme : 'light')
     }
     
     return (
