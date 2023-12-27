@@ -4,14 +4,14 @@ import { HiOutlineMenu } from "react-icons/hi";
 import { HiX } from "react-icons/hi";
 import { HiUserAdd } from "react-icons/hi";
 import { HiSearch } from "react-icons/hi";
-import ToggleDarkMode from './ToggleDarkMode';
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useMyContext } from '@/providers/theme'
 
 export default function Menu() {
     const states:any = useMyContext()
-    const { theme, toggleTheme, menuOpen, toggleMenuOpen} = states
+    const { theme, toggleTheme, menuOpen, toggleMenuOpen, userS } = states
     
     const pathname = usePathname()
     const [open, setOpen] = useState<boolean>(false)
@@ -37,12 +37,13 @@ export default function Menu() {
                 >
                     <h1
                         className={`text-[19px] font-medium ${theme == 'light' ? 'text-black' : 'text-white'}`}
-                    >
+                        >
                         TechStore
                     </h1>
                 </Link>
 
                 <div className="flex-grow-[1] flex gap-4 justify-end items-center">
+                {userS.isLogged == false ? (
                     <Link
                         href={'/login'}
                         className={`
@@ -62,6 +63,22 @@ export default function Menu() {
                             `}
                             >Conecte-se</p>
                     </Link>
+                ) :(
+                    <div className='flex items-end'>
+                        <Image
+                            alt='foto de perfil'
+                            src={userS.image}
+                            width={34}
+                            height={34}
+                            className={`rounded-[50%] w-[34px] h-[34px]`}
+                        />
+                        <p
+                            className={`${theme == 'light' ? 'text-black' : 'text-white'} opacity-60 text-[10px] ms-1`}
+                        >
+                            {userS.name}
+                        </p>
+                    </div>
+                )}
 
                     <div
                         onClick={() => setOpenSearch(true)}

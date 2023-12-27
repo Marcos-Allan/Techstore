@@ -12,7 +12,14 @@ export const MyProvider = ({ children } : { children: React.ReactNode }) => {
         setMenuOpen(!menuOpen)
     }
 
-    const [userS, setUserS] = useState({ isLogged: false, name: '', email:'', image: '' })
+    const user:any = localStorage.getItem('user') 
+    ? JSON.parse(localStorage.getItem('user') as any)
+    : null
+
+    const [userS, setUserS] = useState<any>(user !== null
+        ? user
+        :{ isLogged: false, name: '', email: '', image: '' }
+    )
 
     const toggleLogin = (isLogged:boolean, name:string, email:string, image:string) => {
         setUserS({
@@ -21,6 +28,14 @@ export const MyProvider = ({ children } : { children: React.ReactNode }) => {
             email: email,
             image: image
         })
+
+        localStorage.setItem('user', JSON.stringify({
+                isLogged: isLogged,
+                name: name,
+                email: email,
+                image: image
+            })
+        )
     }
 
     const toggleTheme = () => {

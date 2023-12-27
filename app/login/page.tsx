@@ -26,7 +26,6 @@ export default function Login() {
                   console.log(user.email)
                   console.log(user.photoURL)
                   toggleLogin(true, user.displayName, user.email, user.photoURL)
-                  console.log(userS)
                   // ...
                 } else {
                   // User is signed out
@@ -42,7 +41,6 @@ export default function Login() {
     function logout(){
         signOut(auth)
         toggleLogin(false, '', '', '')
-        console.log('LOGOUT')
     }
 
     const states:any = useMyContext()
@@ -73,7 +71,7 @@ export default function Login() {
                     </div>
                 </div>
             ):(
-                <div className='flex items-center justify-center flex-col'>
+                <div className='flex items-center justify-center flex-col gap-3'>
                     <Image
                         src={userS.image}
                         alt='foto do perfil'
@@ -81,11 +79,19 @@ export default function Login() {
                         height={80}
                         className={`w-[80px] h-[80px] rounded-[50%]`}
                     />
-                    <p>{userS.name}</p>
-                    <p>{userS.email}</p>
+                    <p
+                        className={`
+                            ${theme == 'light' ? 'text-black' : 'text-white'}
+                        `}
+                    >{userS.name}</p>
+                    <p
+                        className={`
+                        ${theme == 'light' ? 'text-black' : 'text-white'}
+                    `}
+                    >{userS.email}</p>
                     <button
                         onClick={() => logout()}
-                        className={`bg-red-500 px-6 py-2 uppercase text-white text-center`}
+                        className={`bg-red-500 w-full rounded-[8px] py-2 uppercase text-white text-center`}
                     >Logout</button>
                 </div>
             )}
