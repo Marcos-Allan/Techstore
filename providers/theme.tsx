@@ -8,9 +8,19 @@ export const MyProvider = ({ children } : { children: React.ReactNode }) => {
     const [theme, setTheme] = useState<string | null>(themeAplicked ? themeAplicked : 'light')
 
     const [menuOpen, setMenuOpen] = useState<boolean>(false)
-
     const toggleMenuOpen = () => {
         setMenuOpen(!menuOpen)
+    }
+
+    const [userS, setUserS] = useState({ isLogged: false, name: '', email:'', image: '' })
+
+    const toggleLogin = (isLogged:boolean, name:string, email:string, image:string) => {
+        setUserS({
+            isLogged: isLogged,
+            name: name,
+            email: email,
+            image: image
+        })
     }
 
     const toggleTheme = () => {
@@ -19,7 +29,7 @@ export const MyProvider = ({ children } : { children: React.ReactNode }) => {
     }
     
     return (
-        <MyContext.Provider value={{ theme, toggleTheme, menuOpen, toggleMenuOpen }}>
+        <MyContext.Provider value={{ theme, toggleTheme, menuOpen, toggleMenuOpen, userS, toggleLogin }}>
             {children}
         </MyContext.Provider>
     )

@@ -13,15 +13,12 @@ import CardProductLoading from "./components/CardProductLoading"
 import Categories from "./components/Categories"
 import ScrollToTop from "./components/ScrollToTop"
 import Screen from "./components/Screen"
-import SideNav from "./components/SideNav"
 
 export default async function Home() {
 
   const produtos = await getProducts()
 
   return (
-    <div className="relative h-screen flex flex-row">
-      <SideNav />
       <Screen>
         <Categories />
         {produtos.map((product:Products, index:number) => (
@@ -41,6 +38,5 @@ export default async function Home() {
         {/* <Message /> */}
         <ScrollToTop />
       </Screen>
-    </div>
   )
 }

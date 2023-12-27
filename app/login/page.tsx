@@ -12,7 +12,7 @@ export default function Login() {
 
     const provider = new GoogleAuthProvider();
 
-    function login(){
+    async function login(){
         signInWithPopup(auth, provider)
         .then((result) => {
             const cred = GoogleAuthProvider.credentialFromResult(result)
@@ -25,6 +25,8 @@ export default function Login() {
                   console.log(user.displayName)
                   console.log(user.email)
                   console.log(user.photoURL)
+                  toggleLogin(true, user.displayName, user.email, user.photoURL)
+                  console.log(userS)
                   // ...
                 } else {
                   // User is signed out
@@ -39,18 +41,21 @@ export default function Login() {
 
     function logout(){
         signOut(auth)
+        toggleLogin(false, '', '', '')
         console.log('LOGOUT')
     }
 
     const states:any = useMyContext()
-    const { theme, toggleTheme} = states
+    const { theme, toggleTheme, userS, toggleLogin} = states
 
     return(
+        
         <div
-            className={`w-full h-full flex items-center justify-center ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'} overflow-y-hidden lg:px-[270px]`}
+        className={`w-full h-full flex items-center justify-center ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'} overflow-y-hidden lg:px-[270px]`}
         >
+            {userS.isLogged == false ? (
             <div
-                className={`${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'} w-[80%] p-6 rounded-[8px]`}
+                className={`${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'} w-[80%] p-6 rounded-[8px] cursor-pointer`}
             >
                 <div
                     onClick={() => login()}
@@ -65,8 +70,25 @@ export default function Login() {
                         height={40}
                         alt='google icon'
                     />
+                    </div>
                 </div>
+            ):(
+                <div className='flex items-center justify-center flex-col'>
+                    <Image
+                        src={userS.image}
+                        alt='foto do perfil'
+                        width={80}
+                        height={80}
+                        className={`w-[80px] h-[80px] rounded-[50%]`}
+                    />
+                    <p>{userS.name}</p>
+                    <p>{userS.email}</p>
+                    <button
+                        onClick={() => logout()}
+                        className={`bg-red-500 px-6 py-2 uppercase text-white text-center`}
+                    >Logout</button>
+                </div>
+            )}
             </div>
-        </div>
     )
 }
