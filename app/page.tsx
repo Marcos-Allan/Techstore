@@ -1,5 +1,5 @@
 import CardProduct from "@/app/components/CardProduct"
-import { getProducts } from "./actions"
+import { getProducts, getProductPage } from "./actions"
 
 interface Products {
   image: string,
@@ -17,6 +17,8 @@ import Screen from "./components/Screen"
 export default async function Home() {
 
   const produtos = await getProducts()
+  const produtosPage = await getProductPage()
+  console.log(produtosPage)
 
   return (
       <Screen>
