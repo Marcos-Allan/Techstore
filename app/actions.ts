@@ -28,8 +28,8 @@ export async function getProduct(id:string){
     return data
 }
 
-export async function getProductPage(){
-    const res = await fetch(`https://techstore-backend.onrender.com/product?page=1`)
+export async function getProductPage(page:number = 1){
+    const res = await fetch(`https://techstore-backend.onrender.com/product?page=${page}`)
 
     const data = await res.json()
     return data
