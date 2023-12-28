@@ -17,8 +17,6 @@ import Screen from "./components/Screen"
 export default async function Home() {
 
   const produtos = await getProducts()
-  const produtosPage = await getProductPage()
-  console.log(produtosPage)
 
   return (
       <Screen>
