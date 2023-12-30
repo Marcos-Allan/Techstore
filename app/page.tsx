@@ -1,7 +1,11 @@
 'use client'
+
 import { useState, useEffect } from 'react'
 import CardProduct from "@/app/components/CardProduct"
 import { getProducts, getProductPage } from "./actions"
+import { useMyContext } from "@/providers/theme"
+
+import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 
 interface Products {
   image: string,
@@ -13,10 +17,12 @@ interface Products {
 import { Suspense } from 'react'
 import CardProductLoading from "./components/CardProductLoading"
 import Categories from "./components/Categories"
-import ScrollToTop from "./components/ScrollToTop"
-import Screen from "./components/Screen"
 
 export default function Home() {
+  
+  const states:any = useMyContext()
+  const { theme, toggleTheme} = states
+
   const [produtos, setProdutos] = useState<any>()
   const [page, setPage] = useState<number>(1)
 
@@ -30,8 +36,34 @@ export default function Home() {
     loadProducts()
   },[page])
 
+  function increasePage(){
+    if(page >= 2){
+      return
+    }
+    setPage(page + 1)
+  }
+  
+  function decreasePage(){
+    if(page <= 1){
+      return
+    }else{
+      setPage(page - 1)
+    }
+  }
+
   return (
-      <Screen>
+    <div className={`
+      screen
+      ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
+      relative
+      w-full min-h-screen overflow-x-hidden flex flex-wrap flex-row justify-center items-center pt-[80px]
+      lg:flex-row scrollbar-none lg:scrollbar-thin
+      ${theme == 'light'
+          ? 'lg:scrollbar-track-h-white-200 lg:scrollbar-thumb-h-gray-300'
+          : 'lg:scrollbar-track-h-gray-300 lg:scrollbar-thumb-h-white-200'
+      }
+      `}
+    >
         <Categories />
         {produtos && produtos.map((product:Products, index:number) => (
           <Suspense fallback={<CardProductLoading />}>
@@ -46,11 +78,33 @@ export default function Home() {
             />
           </Suspense>
         ))}
-        <div onClick={() => setPage(page - 1)}>diminuir</div>
-        <p>{page}</p>
-        <div onClick={() => setPage(page + 1)}>aumentar</div>
-        {/* <Message /> */}
-        <ScrollToTop />
-      </Screen>
+        <div
+          className={`
+          ${theme == 'light' ?  'bg-h-white-200' : 'bg-h-gray-300'}
+          w-10/12 flex flex-row justify-around mb-8 py-2 lg:w-8/12 rounded-[32px]
+          `}
+        >
+
+          <div onClick={() => decreasePage()}>
+            <HiChevronLeft
+            className={`
+              ${theme == 'light' ? 'text-black' : 'text-white'}
+              text-[22px]`}
+            />
+          </div>
+
+          <p className={`${theme == 'light' ? 'text-black' : 'text-white'}`}>
+            {page}
+          </p>
+
+          <div onClick={() => increasePage()}>
+            <HiChevronRight
+              className={`
+                ${theme == 'light' ? 'text-black' : 'text-white'}
+                text-[22px]`}
+              />
+          </div>
+        </div>
+      </div>
   )
 }
