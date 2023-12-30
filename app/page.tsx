@@ -1,3 +1,5 @@
+'use client'
+import { useState, useEffect } from 'react'
 import CardProduct from "@/app/components/CardProduct"
 import { getProducts, getProductPage } from "./actions"
 
@@ -14,17 +16,25 @@ import Categories from "./components/Categories"
 import ScrollToTop from "./components/ScrollToTop"
 import Screen from "./components/Screen"
 
-export default async function Home() {
+export default function Home() {
+  const [produtos, setProdutos] = useState<any>()
+  const [page, setPage] = useState<number>(1)
 
-  // const produtos = await getProducts()
-  const produtos = await getProductPage(2)
+  async function loadProducts(){
+     const proods = await getProductPage(page)
+     setProdutos(proods)
+     return
+  }
+
+  useEffect(() => {
+    loadProducts()
+  },[page])
 
   return (
       <Screen>
         <Categories />
-        {produtos.map((product:Products, index:number) => (
+        {produtos && produtos.map((product:Products, index:number) => (
           <Suspense fallback={<CardProductLoading />}>
-
             <CardProduct
               descont={product.descont}
               image={product.image}
@@ -33,9 +43,12 @@ export default async function Home() {
               index={index}
               starNumber={5-index}
               id={product._id}
-              />
+            />
           </Suspense>
         ))}
+        <div onClick={() => setPage(page - 1)}>diminuir</div>
+        <p>{page}</p>
+        <div onClick={() => setPage(page + 1)}>aumentar</div>
         {/* <Message /> */}
         <ScrollToTop />
       </Screen>
