@@ -30,14 +30,15 @@ export default function Home() {
      const proods = await getProductPage(page)
      setProdutos(proods)
      return
-  }
-
-  useEffect(() => {
-    loadProducts()
+    }
+    
+    useEffect(() => {
+      loadProducts()
+      console.log(produtos)
   },[page])
 
   function increasePage(){
-    if(page >= 2){
+    if(page >= 3){
       return
     }
     setPage(page + 1)
