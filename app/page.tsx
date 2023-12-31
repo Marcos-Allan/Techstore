@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react'
 import CardProduct from "@/app/components/CardProduct"
 import { getProducts, getProductPage } from "./actions"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+
 import { useMyContext } from "@/providers/theme"
 
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
@@ -24,32 +26,51 @@ export default function Home() {
   const { theme, toggleTheme} = states
 
   const [produtos, setProdutos] = useState<any>()
-  const [page, setPage] = useState<number>(1)
+  
+  const searchParams = useSearchParams()
+  const [page, setPage] = useState<string>(searchParams.get('page')?.toString() as string)
+  // const [page, setPage] = useState<string>('1')
 
-  async function loadProducts(){
-     const proods = await getProductPage(page)
-     setProdutos(proods)
-     return
-    }
+  const { replace } = useRouter()
+  const pathname = usePathname()
+  
+  async function loadProducts(term:string){
+    const params = new URLSearchParams(searchParams)
+
+    const proods = await getProductPage(page as any)
+    setProdutos(proods)
     
-    useEffect(() => {
-      loadProducts()
+    if(term){
+      params.set('page', term)
+    }else{
+      params.delete('page')
+    }
+
+    replace(`${pathname}?${params.toString()}`)
+    return
+  }
+    
+  useEffect(() => {
+      loadProducts(page)
       console.log(produtos)
   },[page])
 
   function increasePage(){
-    if(page >= 3){
+    if(Number(page) >= 3){
       return
     }
-    setPage(page + 1)
+    const pageCurrent = Number(page)
+    const actual = pageCurrent + 1
+    setPage(String(actual))
   }
   
   function decreasePage(){
-    if(page <= 1){
+    if(Number(page) <= 1){
       return
-    }else{
-      setPage(page - 1)
     }
+    const pageCurrent = Number(page)
+    const actual = pageCurrent - 1
+    setPage(String(actual))
   }
 
   return (
@@ -104,7 +125,7 @@ export default function Home() {
                 ${theme == 'light' ? 'text-black' : 'text-white'}
                 text-[22px]`}
               />
-          </div>
+          </div> 
         </div>
       </div>
   )
