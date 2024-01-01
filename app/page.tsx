@@ -19,7 +19,6 @@ interface Products {
 import { Suspense } from 'react'
 import CardProductLoading from "./components/CardProductLoading"
 import Categories from "./components/Categories"
-import Message from './components/Message'
 
 export default function Home() {
   
@@ -29,7 +28,7 @@ export default function Home() {
   const [produtos, setProdutos] = useState<any>()
   
   const searchParams = useSearchParams()
-  const [page, setPage] = useState<string>(searchParams.get('page')?.toString() as string ? searchParams.get('page')?.toString() as string : '1')
+  const [page, setPage] = useState<string>(searchParams.get('page')?.toString() as string)
   // const [page, setPage] = useState<string>('1')
 
   const { replace } = useRouter()
@@ -128,7 +127,6 @@ export default function Home() {
               />
           </div> 
         </div>
-        <Message />
       </div>
   )
 }

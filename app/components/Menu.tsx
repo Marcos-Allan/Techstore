@@ -1,6 +1,9 @@
 'use client'
 import { useState } from 'react'
-import { HiOutlineMenu, HiX, HiUserAdd, HiSearch } from "react-icons/hi";
+import { HiOutlineMenu } from "react-icons/hi";
+import { HiX } from "react-icons/hi";
+import { HiUserAdd } from "react-icons/hi";
+import { HiSearch } from "react-icons/hi";
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
@@ -8,7 +11,7 @@ import { useMyContext } from '@/providers/theme'
 
 export default function Menu() {
     const states:any = useMyContext()
-    const { theme, toggleTheme, menuOpen, toggleMenuOpen, userS, toggleLogin } = states
+    const { theme, toggleTheme, menuOpen, toggleMenuOpen, userS } = states
     
     const pathname = usePathname()
     const [open, setOpen] = useState<boolean>(false)
@@ -76,7 +79,7 @@ export default function Menu() {
                         </p>
                     </div>
                 )}
-                    
+
                     <div
                         onClick={() => setOpenSearch(true)}
                         className={`

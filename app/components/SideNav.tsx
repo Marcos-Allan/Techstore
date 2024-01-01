@@ -1,18 +1,18 @@
 'use client'
 
 import { useMyContext } from "@/providers/theme"
-import { HiLogout, HiMoon, HiX } from "react-icons/hi"
+import { HiMoon, HiX } from "react-icons/hi"
 import { HiSun } from "react-icons/hi"
 
 export default function SideNav() {
     
     const states:any = useMyContext()
-    const { theme, toggleTheme, menuOpen, toggleMenuOpen, userS, toggleLogin } = states
+    const { theme, toggleTheme, menuOpen, toggleMenuOpen } = states
     
     return(
         <div
             className={`
-                z-50 h-full justify-start flex-col items-start lg:w-2/12
+                z-50 h-full items-start justify-center lg:w-2/12
                 ${theme == 'light' ? 'bg-h-black-500' : 'bg-h-white-100'}
                 flex
                 fixed top-0
@@ -23,7 +23,6 @@ export default function SideNav() {
         >
             <button
                 onClick={() => toggleTheme()}
-                className={`py-3 pl-2`}
             >
                 <div className='flex items-center gap-3'>
                     {theme == 'light' ? (
@@ -35,26 +34,8 @@ export default function SideNav() {
                         Tema {theme == 'light' ? 'Claro' : 'Escuro'}
                     </p>
                 </div>
-            </button>
-            
-            {userS.isLogged == true && (
-                <button
-                    onClick={() => toggleLogin(false, '', '', '')}
-                    className={`py-3 pl-2`}
-                >
-                    <div className='flex items-center gap-3'>
-                        
-                        <HiLogout className={`
-                            ${theme == 'light' ? 'text-white' : 'text-black'}
-                        `}
-                            />
 
-                        <p className={`${theme == 'light' ? 'text-white' : 'text-black'}`}>
-                            Finalizar Sessão
-                        </p>
-                    </div>
-                </button>  
-            )}
+            </button>
             
             <button
                 onClick={() => toggleMenuOpen()}
