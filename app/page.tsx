@@ -54,7 +54,7 @@ export default function Home() {
   useEffect(() => {
       loadProducts(page)
       console.log(produtos)
-  },[page, loadProducts, produtos])
+  },[page, produtos])
 
   function increasePage(){
     if(Number(page) >= 3){
