@@ -12,6 +12,7 @@ interface Products {
     image: string,
     descont: string,
     price: string,
+    key: number,
     index: number,
     starNumber: number,
     id: string,
@@ -25,6 +26,7 @@ export default function CardProduct(props: Products) {
 
     return(
             <div
+                key={props.key}
                 className={`
                     ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}
                     flex justify-center items-center flex-col w-9/12 h-[290px]
