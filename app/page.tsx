@@ -28,7 +28,7 @@ export default function Home() {
   const [produtos, setProdutos] = useState<any>()
   
   const searchParams = useSearchParams()
-  const [page, setPage] = useState<string>(searchParams.get('page')?.toString() as string)
+  const [page, setPage] = useState<string>(searchParams.get('page')?.toString() ? searchParams.get('page')?.toString() as string : '1')
   // const [page, setPage] = useState<string>('1')
 
   const { replace } = useRouter()
@@ -52,8 +52,7 @@ export default function Home() {
     
   useEffect(() => {
       loadProducts(page)
-      console.log(produtos)
-  },[page, produtos])
+  },[page])
 
   function increasePage(){
     if(Number(page) >= 3){
