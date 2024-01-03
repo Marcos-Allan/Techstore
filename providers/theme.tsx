@@ -5,6 +5,7 @@ export const MyContext = createContext({})
 
 export const MyProvider = ({ children } : { children: React.ReactNode }) => {
     const themeAplicked = localStorage.getItem('tema') == 'light' ? 'dark' : 'light'
+    
     const [theme, setTheme] = useState<string | null>(themeAplicked ? themeAplicked : 'light')
 
     const [menuOpen, setMenuOpen] = useState<boolean>(false)
@@ -16,9 +17,9 @@ export const MyProvider = ({ children } : { children: React.ReactNode }) => {
     ? JSON.parse(localStorage.getItem('user') as any)
     : null
 
-    const [userS, setUserS] = useState<any>(user !== null
-        ? user
-        :{ isLogged: false, name: '', email: '', image: '' }
+    const [userS, setUserS] = useState<any>(user === null
+        ?{ isLogged: false, name: '', email: '', image: '' }
+        : user
     )
 
     const toggleLogin = (isLogged:boolean, name:string, email:string, image:string) => {

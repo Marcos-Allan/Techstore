@@ -19,17 +19,12 @@ export default function Login() {
             console.log(cred)
             onAuthStateChanged(auth, (user) => {
                 if (user) {
-                  // User is signed in, see docs for a list of available properties
-                  // https://firebase.google.com/docs/reference/js/auth.user
-                  const uid = user.uid;
                   console.log(user.displayName)
                   console.log(user.email)
                   console.log(user.photoURL)
                   toggleLogin(true, user.displayName, user.email, user.photoURL)
-                  // ...
                 } else {
-                  // User is signed out
-                  // ...
+                    return
                 }
               });
         })
@@ -44,7 +39,7 @@ export default function Login() {
     }
 
     const states:any = useMyContext()
-    const { theme, toggleTheme, userS, toggleLogin} = states
+    const { theme, userS, toggleLogin} = states
 
     return(
         

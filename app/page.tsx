@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import CardProduct from "@/app/components/CardProduct"
-import { getProducts, getProductPage } from "./actions"
+import { getProductPage } from "./actions"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 import { useMyContext } from "@/providers/theme"
@@ -23,13 +23,12 @@ import Categories from "./components/Categories"
 export default function Home() {
   
   const states:any = useMyContext()
-  const { theme, toggleTheme} = states
+  const { theme } = states
 
   const [produtos, setProdutos] = useState<any>()
   
   const searchParams = useSearchParams()
   const [page, setPage] = useState<string>(searchParams.get('page')?.toString() ? searchParams.get('page')?.toString() as string : '1')
-  // const [page, setPage] = useState<string>('1')
 
   const { replace } = useRouter()
   const pathname = usePathname()
@@ -47,7 +46,6 @@ export default function Home() {
     }
 
     replace(`${pathname}?${params.toString()}`)
-    return
   }
     
   useEffect(() => {
@@ -87,7 +85,7 @@ export default function Home() {
     >
         <Categories />
         {produtos && produtos.map((product:Products, index:number) => (
-          <Suspense fallback={<CardProductLoading />}>
+          <Suspense key={index} fallback={<CardProductLoading />}>
             <CardProduct
               descont={product.descont}
               image={product.image}
