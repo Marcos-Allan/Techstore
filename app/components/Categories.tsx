@@ -15,7 +15,7 @@ export default function Categories(){
     }
 
     const states:any = useMyContext()
-    const { theme, toggleTheme} = states
+    const { theme } = states
 
     return(
         <div className={`

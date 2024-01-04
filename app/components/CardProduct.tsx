@@ -1,7 +1,4 @@
 'use client'
-import { useLayoutEffect } from 'react'
-import { gsap } from "gsap";
-
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { HiStar } from "react-icons/hi";
 import Link from 'next/link'
@@ -19,10 +16,9 @@ interface Products {
 }
 
 
-export default function CardProduct(props: Products) {
-
+export default async function CardProduct(props: Products) {
     const states:any = useMyContext()
-    const { theme, toggleTheme} = states
+    const { theme } = states
 
     return(
             <div
