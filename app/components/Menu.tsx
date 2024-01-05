@@ -120,24 +120,24 @@ export default function Menu() {
                 </div>
 
             </div>
-                <div className={`
-                    w-full h-[110%] fixed ${openSearch == true ? 'top-0' : '-top-[110%]'} left-0 z-[51] opacity-95 flex justify-center items-start transition-all duration-500
-                    ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
-                `}>
+            <div className={`
+                w-full h-[110%] fixed ${openSearch == true ? 'top-0' : '-top-[110%]'} left-0 z-[51] opacity-95 flex justify-center items-start transition-all duration-500
+                ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
+            `}>
                 <div
                     className={`
-                        w-10/12 flex flex-row rounded-[8px] overflow-hidden mt-[100px]
+                        w-10/12 flex flex-row rounded-[8px] overflow-hidden mt-[100px] justify-center
                     `}
                 >
                     <input 
                         type='text'
                         placeholder='pesquisar na techstore'
                         className={`
-                            flex-grow-[1] h-[30px] ps-5 outline-none
+                            w-10/12 h-[30px] ps-5 outline-none
                             ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}
                             ${theme == 'light' ? 'text-black' : 'text-white'}
                             border border-solid ${theme == 'light' ? 'border-black' : 'border-white'}
-                            rounded-tl-[8px] rounded-bl-[8px]
+                            rounded-tl-[8px] rounded-bl-[8px] lg:w-6/12
                             placeholder:${theme == 'light' ? 'text-black' : 'text-white'} placeholder:opacity-80 capitalize
                         `}
                     />

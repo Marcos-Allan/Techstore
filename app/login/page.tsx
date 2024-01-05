@@ -1,9 +1,10 @@
 'use client'
 import Image from 'next/image'
 import googleIcon from '@/public/Google_icon.png'
+import { useState, useEffect } from 'react'
 import { useMyContext } from '@/providers/theme'
 
-import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithRedirect, signInWithPopup, signOut } from "firebase/auth";
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithRedirect, signInWithPopup, signOut, getRedirectResult } from "firebase/auth";
 import '@/app/utils/firebase.js'
 
 export default function Login() {
@@ -13,24 +14,27 @@ export default function Login() {
     const provider = new GoogleAuthProvider();
 
     async function login(){
-        signInWithPopup(auth, provider)
-        .then((result) => {
-            const cred = GoogleAuthProvider.credentialFromResult(result)
-            console.log(cred)
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                  console.log(user.displayName)
-                  console.log(user.email)
-                  console.log(user.photoURL)
-                  toggleLogin(true, user.displayName, user.email, user.photoURL)
-                } else {
-                    return
-                }
-              });
-        })
-      .catch((error) => {
-        console.log(error)
-      });
+        setLoading(true)
+        if(loading == true){
+            return
+        }else{
+            signInWithRedirect(auth, provider)
+        }
+    }
+
+    function getData(){
+        getRedirectResult(auth).then(function(result) {
+            const user = result?.user;
+            if(user){
+                toggleLogin(true, user?.displayName, user?.email, user?.photoURL)
+                setLoading(false)
+            }else{
+                setLoading(false)
+                return
+            }
+          }).catch(function(error) {
+            console.error("Erro durante o login:", error);
+          });
     }
 
     function logout(){
@@ -41,6 +45,12 @@ export default function Login() {
     const states:any = useMyContext()
     const { theme, userS, toggleLogin} = states
 
+    const [loading, setLoading] = useState<boolean>(true)
+
+    useEffect(() => {
+        getData()
+    },[])
+
     return(
         
         <div
@@ -48,21 +58,35 @@ export default function Login() {
         >
             {userS.isLogged == false ? (
             <div
-                className={`${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'} w-[80%] p-6 rounded-[8px] cursor-pointer`}
+                className={`
+                w-[80%] max-w-[400px] p-6 rounded-[8px] cursor-pointer
+                ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}
+                ${loading == false ? 'opacity-100' : 'opacity-60'}
+                `}
             >
                 <div
                     onClick={() => login()}
-                    className={`w-full p-4 ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'} flex rounded-[8px] items-center justify-around`}
+                    className={`
+                    w-full p-4 flex rounded-[8px] items-center justify-around
+                    ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
+                    ${loading == false ? 'opacity-100' : 'opacity-60'}
+                    `}
                 >
                     <p
                         className={`${theme == 'light' ? 'text-black' : 'text-white'} text-[14px]`}
                     >Login com o Google</p>
-                    <Image
-                        src={googleIcon}
-                        width={40}
-                        height={40}
-                        alt='google icon'
-                    />
+                    {loading == false ? (
+                        <Image
+                            src={googleIcon}
+                            width={40}
+                            height={40}
+                            alt='google icon'
+                        />
+                        ):(
+                            <div
+                                className='w-10 h-10 border-4 border-h-white-200 border-solid border-t-h-gray-300 rounded-full animate-spin'
+                            ></div>
+                        )}
                     </div>
                 </div>
             ):(
