@@ -6,12 +6,13 @@ interface Product{
     price: string,
     descont: string
     image: string,
+    description: string,
 }
 
 export default function Product(product: Product){
 
     const states:any = useMyContext()
-    const { theme, toggleTheme} = states
+    const { theme } = states
 
     return(
         <div
@@ -57,7 +58,7 @@ export default function Product(product: Product){
                 <p 
                     className={`${theme == 'light' ? 'text-black' : 'text-white'} p-4`}
                 >
-                    Esse tênis é um dos mas comprados do momento estando na moda atual a mais de um ano faz com que sempre que você o utilizar estara dentro da moda
+                    {product.description}
                 </p>
             </div>
             <button

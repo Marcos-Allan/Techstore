@@ -1,21 +1,20 @@
 'use client'
 
 import { useMyContext } from "@/providers/theme"
-import { HiMoon, HiX } from "react-icons/hi"
-import { HiSun } from "react-icons/hi"
+import { HiMoon, HiX, HiSun, HiLogout } from "react-icons/hi"
 
 export default function SideNav() {
     
     const states:any = useMyContext()
-    const { theme, toggleTheme, menuOpen, toggleMenuOpen } = states
+    const { theme, toggleTheme, menuOpen, toggleMenuOpen, toggleLogin, userS } = states
     
     return(
         <div
             className={`
-                z-50 h-full items-start justify-center lg:w-2/12
+                z-50 h-full items-center justify-start lg:w-2/12
                 ${theme == 'light' ? 'bg-h-black-500' : 'bg-h-white-100'}
                 flex
-                fixed top-0
+                fixed top-0 flex-col
                 w-full lg:relative lg:left-0
                 transition-all duration-500 lg:transition-none lg:duration-0
                 ${menuOpen == true ? '-left-0' : '-left-[100%]'}
@@ -34,8 +33,25 @@ export default function SideNav() {
                         Tema {theme == 'light' ? 'Claro' : 'Escuro'}
                     </p>
                 </div>
-
+                
             </button>
+            
+            {userS.isLogged == true && (
+
+                <button
+                    onClick={() => toggleLogin(false, '', '', '')}
+                >
+                    <div className='flex items-center gap-3'>
+                        <HiLogout className={`
+                            ${theme == 'light' ? 'text-white' : 'text-black'}
+                        `} />
+                        <p className={`${theme == 'light' ? 'text-white' : 'text-black'}`}>
+                            Logout
+                        </p>
+                    </div>
+                </button>
+            )}
+
             
             <button
                 onClick={() => toggleMenuOpen()}

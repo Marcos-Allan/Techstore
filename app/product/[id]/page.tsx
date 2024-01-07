@@ -9,6 +9,7 @@ export default async function Product({ params }: {params:any}) {
             price={product.price}
             descont={product.descont}
             image={product.image}
+            description={product.description}
         />
     )
 }

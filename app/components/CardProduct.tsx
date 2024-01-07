@@ -11,7 +11,7 @@ interface Products {
     price: string,
     key: number,
     index: number,
-    starNumber: number,
+    stars: string,
     id: string,
 }
 
@@ -76,51 +76,35 @@ export default async function CardProduct(props: Products) {
                 </div>
 
                 <div
-                className="flex flex-row-reverse w-full"
-            >
-                {props.starNumber == 1 && (
+                    className="flex flex-row-reverse w-full"
+                >   
+                {Number(props.stars) == 1 && (
                     <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
                 )}
-                {props.starNumber == 2 && (
+                {Number(props.stars) == 2 && (
                     <>
                         <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
                         <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
                     </>
                 )}
-                {props.starNumber == 3 && (
+                {Number(props.stars) == 3 && (
                     <>
                         <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
                         <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
                         <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
                     </>
                 )}
-                {props.starNumber == 4 && (
+                {Number(props.stars) == 4 && (
                     <>
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                    </>
-                )}
-                {props.starNumber == 5 && (
-                    <>
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
                         <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
                         <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
                         <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
                         <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
                     </>
                 )}
-
-                {props.starNumber == 0 && (
+                {Number(props.stars) == 5 && (
                     <>
                         <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                    </>
-                )}
-                
-                {props.starNumber == -1 && (
-                    <>
                         <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
                         <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
                         <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />

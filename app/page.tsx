@@ -8,6 +8,7 @@ interface Products {
   image: string,
   descont: string,
   price: string,
+  stars: string,
   _id: string
 }
   
@@ -46,6 +47,7 @@ export default function Home() {
     
   useEffect(() => {
       loadProducts(page)
+      console.log(produtos)
   },[page])
 
   function increasePage(page:string){
@@ -79,8 +81,8 @@ export default function Home() {
             price={product.price}
             key={index}
             index={index}
-            starNumber={5-index}
             id={product._id}
+            stars={product.stars}
           />
         </Suspense>
       ))}
