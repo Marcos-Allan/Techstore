@@ -12,6 +12,7 @@ interface Products {
     key: number,
     index: number,
     stars: string,
+    keywords: string,
     id: string,
 }
 

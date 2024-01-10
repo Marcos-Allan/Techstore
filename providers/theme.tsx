@@ -7,8 +7,9 @@ export const MyProvider = ({ children } : { children: React.ReactNode }) => {
     const themeAplicked = localStorage.getItem('tema') == 'light' ? 'dark' : 'light'
     
     const [theme, setTheme] = useState<string | null>(themeAplicked ? themeAplicked : 'light')
-
     const [menuOpen, setMenuOpen] = useState<boolean>(false)
+    const [keyword, setKeyword] = useState<string>('tênis')
+
     const toggleMenuOpen = () => {
         setMenuOpen(!menuOpen)
     }
@@ -45,7 +46,7 @@ export const MyProvider = ({ children } : { children: React.ReactNode }) => {
     }
     
     return (
-        <MyContext.Provider value={{ theme, toggleTheme, menuOpen, toggleMenuOpen, userS, toggleLogin }}>
+        <MyContext.Provider value={{ theme, toggleTheme, menuOpen, toggleMenuOpen, userS, toggleLogin, keyword, setKeyword }}>
             {children}
         </MyContext.Provider>
     )

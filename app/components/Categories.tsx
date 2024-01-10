@@ -9,13 +9,15 @@ export default function Categories(){
     function handleCategory(categorySet:string){
         if(category == categorySet){
             setCategory('tudo')
+            setKeyword('tudo')
             return
         }
         setCategory(categorySet)
+        setKeyword(categorySet)
     }
 
     const states:any = useMyContext()
-    const { theme } = states
+    const { theme, keyword, setKeyword } = states
 
     return(
         <div className={`

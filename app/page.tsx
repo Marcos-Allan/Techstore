@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { getProductPage } from "./actions"
+import { getProductPage, getProductTenis, getProducts  } from "./actions"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 interface Products {
@@ -9,6 +9,7 @@ interface Products {
   descont: string,
   price: string,
   stars: string,
+  keywords: string,
   _id: string
 }
   
@@ -19,8 +20,11 @@ import CategoriesLoading from "@/app/components/CategoriesLoading"
 import Categories from "@/app/components/Categories"
 import Screen from '@/app/components/Screen'
 import Pagination from '@/app/components/Pagination'
+import { useMyContext } from '@/providers/theme'
 
 export default function Home() {
+  const states:any = useMyContext()
+  const { keyword, setKeyword } = states
 
   const [produtos, setProdutos] = useState<any>()
   
@@ -33,7 +37,8 @@ export default function Home() {
   async function loadProducts(term:string){
     const params = new URLSearchParams(searchParams)
 
-    const proods = await getProductPage(page as any)
+    // const proods = await getProductPage(page as any)
+    const proods = await getProductTenis(keyword as string)
     setProdutos(proods)
     
     if(term){
@@ -48,7 +53,7 @@ export default function Home() {
   useEffect(() => {
       loadProducts(page)
       console.log(produtos)
-  },[page])
+  },[page, keyword])
 
   function increasePage(page:string){
     if(Number(page) >= 3){
@@ -83,6 +88,7 @@ export default function Home() {
             index={index}
             id={product._id}
             stars={product.stars}
+            keywords={product.keywords}
           />
         </Suspense>
       ))}
