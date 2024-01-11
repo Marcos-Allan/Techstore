@@ -21,15 +21,16 @@ export default function SideNav() {
             `}
         >
             <button
+                className={`lg:w-full flex flex-row justify-center items-center py-3 border-b-2 ${theme == 'light' ? 'border-h-white-200' : 'border-h-gray-300'}`}
                 onClick={() => toggleTheme()}
             >
-                <div className='flex items-center gap-3'>
+                <div className='flex items-center gap-3 lg:w-[80%] justify-around'>
                     {theme == 'light' ? (
-                        <HiSun className='text-white' />
+                        <HiSun className='text-white text-left' />
                     ):(
-                        <HiMoon className='text-black' />
+                        <HiMoon className='text-black text-left' />
                     )}
-                    <p className={`${theme == 'light' ? 'text-white' : 'text-black'}`}>
+                    <p className={`${theme == 'light' ? 'text-white' : 'text-black'} flex-grow-[1] ms-2 text-left`}>
                         Tema {theme == 'light' ? 'Claro' : 'Escuro'}
                     </p>
                 </div>
@@ -39,13 +40,15 @@ export default function SideNav() {
             {userS.isLogged == true && (
 
                 <button
+                    className={`lg:w-full flex flex-row justify-center items-center py-3 border-b-2 ${theme == 'light' ? 'border-h-white-200' : 'border-h-gray-300'}`}
                     onClick={() => toggleLogin(false, '', '', '')}
                 >
-                    <div className='flex items-center gap-3'>
+                    <div className='flex items-center gap-3 lg:w-[80%] justify-around'>
                         <HiLogout className={`
                             ${theme == 'light' ? 'text-white' : 'text-black'}
+                            text-left
                         `} />
-                        <p className={`${theme == 'light' ? 'text-white' : 'text-black'}`}>
+                        <p className={`${theme == 'light' ? 'text-white' : 'text-black'} flex-grow-[1] ms-2 text-left`}>
                             Logout
                         </p>
                     </div>

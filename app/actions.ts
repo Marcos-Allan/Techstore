@@ -34,11 +34,3 @@ export async function getProductPage(page:number = 1, keyword:string = 'tudo'){
     const data = await res.json()
     return data
 }
-
-export async function getProductTenis(keyword:string){
-    const res = await fetch('https://techstore-backend.onrender.com/products/')
-    
-    const tenis = await res.json()
-    const data = tenis.filter((product:any) => product.keywords.includes(keyword))
-    return data
-}

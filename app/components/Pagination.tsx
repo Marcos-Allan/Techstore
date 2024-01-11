@@ -26,7 +26,9 @@ export default function Pagination(props: Props){
             <HiChevronLeft
             className={`
               ${theme == 'light' ? 'text-black' : 'text-white'}
-              text-[22px]`}
+              text-[22px]
+              ${props.page == '1' && 'hidden'}
+              `}
             />
           </div>
 
