@@ -22,7 +22,17 @@ export default function Login() {
         }
     }
 
-    function getData(){
+    function logout(){
+        signOut(auth)
+        toggleLogin(false, '', '', '')
+    }
+
+    const states:any = useMyContext()
+    const { theme, userS, toggleLogin} = states
+
+    const [loading, setLoading] = useState<boolean>(true)
+
+    useEffect(() => {
         getRedirectResult(auth).then(function(result) {
             const user = result?.user;
             if(user){
@@ -35,21 +45,7 @@ export default function Login() {
           }).catch(function(error) {
             console.error("Erro durante o login:", error);
           });
-    }
-
-    function logout(){
-        signOut(auth)
-        toggleLogin(false, '', '', '')
-    }
-
-    const states:any = useMyContext()
-    const { theme, userS, toggleLogin} = states
-
-    const [loading, setLoading] = useState<boolean>(true)
-
-    useEffect(() => {
-        getData()
-    },[])
+    },[auth, toggleLogin])
 
     return(
         

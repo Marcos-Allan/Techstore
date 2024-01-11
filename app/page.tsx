@@ -58,6 +58,7 @@ export default function Home() {
   useEffect(() => {
       paramsS(page, keyword)
       loadProducts()
+      console.log('useEffect chamado')
   },[page, keyword])
   
   useEffect(() => {

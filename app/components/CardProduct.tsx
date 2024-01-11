@@ -17,7 +17,7 @@ interface Products {
 }
 
 
-export default async function CardProduct(props: Products) {
+export default function CardProduct(props: Products) {
     const states:any = useMyContext()
     const { theme } = states
 
