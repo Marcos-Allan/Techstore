@@ -24,7 +24,7 @@ import { useMyContext } from '@/providers/theme'
 
 export default function Home() {
   const states:any = useMyContext()
-  const { keyword, setKeyword } = states
+  const { keyword } = states
 
   const [produtos, setProdutos] = useState<any>()
   
@@ -34,24 +34,29 @@ export default function Home() {
   const { replace } = useRouter()
   const pathname = usePathname()
   
-  async function loadProducts(term:string){
+  async function loadProducts(page:string, keyword:string){
     const params = new URLSearchParams(searchParams)
 
-    // const proods = await getProductPage(page as any)
-    const proods = await getProductTenis(keyword as string)
+    const proods = await getProductPage(page as any, keyword as string)
     setProdutos(proods)
     
-    if(term){
-      params.set('page', term)
+    if(page){
+      params.set('page', page)
     }else{
       params.delete('page')
+    }
+
+    if(keyword){
+      params.set('keyword', keyword)
+    }else{
+      params.delete('keyword')
     }
 
     replace(`${pathname}?${params.toString()}`)
   }
     
   useEffect(() => {
-      loadProducts(page)
+      loadProducts(page, keyword)
       console.log(produtos)
   },[page, keyword])
 
@@ -92,7 +97,7 @@ export default function Home() {
           />
         </Suspense>
       ))}
-      <Pagination decreasePage={() => decreasePage(page)} increasePage={() => increasePage(page)} page={page} />
+      <Pagination decreasePage={() => decreasePage(page)} increasePage={() => increasePage(page)} page={page} limit={produtos} />
     </Screen>
   )
 }

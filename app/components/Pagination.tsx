@@ -5,7 +5,8 @@ import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 interface Props{
     decreasePage: any,
     increasePage: any,
-    page: string
+    page: string,
+    limit: any,
 }
 
 export default function Pagination(props: Props){
@@ -37,7 +38,9 @@ export default function Pagination(props: Props){
             <HiChevronRight
               className={`
                 ${theme == 'light' ? 'text-black' : 'text-white'}
-                text-[22px]`}
+                ${props.limit == 0 && 'hidden'}
+                text-[22px]
+                `}
               />
           </div> 
         </div>

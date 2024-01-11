@@ -11,10 +11,11 @@ import { useMyContext } from '@/providers/theme'
 
 export default function Menu() {
     const states:any = useMyContext()
-    const { theme, toggleTheme, menuOpen, toggleMenuOpen, userS } = states
+    const { theme, toggleTheme, menuOpen, toggleMenuOpen, userS, keyword, setKeyword } = states
     
     const pathname = usePathname()
     const [open, setOpen] = useState<boolean>(false)
+    const [inputValue, setInputValue] = useState<string>('')
     const [openSearch, setOpenSearch] = useState<boolean>(false)
 
     function isProductInfo(){
@@ -132,6 +133,8 @@ export default function Menu() {
                     <input 
                         type='text'
                         placeholder='pesquisar na techstore'
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
                         className={`
                             w-10/12 h-[30px] ps-5 outline-none
                             ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}
@@ -142,6 +145,7 @@ export default function Menu() {
                         `}
                     />
                     <button
+                        onClick={() => setKeyword(inputValue)}
                         className={`w-[30px] border border-solid ${theme == 'light' ? 'border-black' : 'border-white'} h-[30px] flex rounded-tr-[8px] rounded-br-[8px] items-center justify-center ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}`}
 
                     >
