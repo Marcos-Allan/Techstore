@@ -70,11 +70,17 @@ export default function Home() {
   },[pathname, replace, searchParams])
   //CLIENT
   
+  // useEffect(() => {
+  //     paramsS(page, keyword)
+  //     loadProducts()
+  //     console.log('useEffect chamado')
+  // },[page, keyword])
+  
   useEffect(() => {
       paramsS(page, keyword)
       loadProducts()
       console.log('useEffect chamado')
-  },[paramsS, loadProducts])
+  },[page, keyword, paramsS, loadProducts])
   
   useEffect(() => {
       setPage('1')

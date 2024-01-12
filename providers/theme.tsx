@@ -1,13 +1,12 @@
 'use client'
-import { saveCookiesTheme } from '@/app/actions'
 import { useState, createContext, useContext } from 'react'
 
 export const MyContext = createContext({})
 
 export const MyProvider = ({ children } : { children: React.ReactNode }) => {
-    const themeAplicked = window.localStorage.getItem('tema') == 'light' ? 'dark' : 'light'
+    const themeAplicked = 'light'
     
-    const [theme, setTheme] = useState<string | null>(themeAplicked ? themeAplicked : 'light')
+    const [theme, setTheme] = useState<string | null>(themeAplicked)
     const [menuOpen, setMenuOpen] = useState<boolean>(false)
     const [keyword, setKeyword] = useState<string>('tudo')
 
@@ -15,13 +14,7 @@ export const MyProvider = ({ children } : { children: React.ReactNode }) => {
         setMenuOpen(!menuOpen)
     }
 
-    const user:any = window.localStorage.getItem('user') 
-    ? JSON.parse(window.localStorage.getItem('user') as any)
-    : null
-
-    const [userS, setUserS] = useState<any>(user === null
-        ?{ isLogged: false, name: '', email: '', image: '' }
-        : user
+    const [userS, setUserS] = useState<any>({ isLogged: false, name: '', email: '', image: '' }
     )
 
     const toggleLogin = (isLogged:boolean, name:string, email:string, image:string) => {
@@ -31,20 +24,10 @@ export const MyProvider = ({ children } : { children: React.ReactNode }) => {
             email: email,
             image: image
         })
-
-        window.localStorage.setItem('user', JSON.stringify({
-                isLogged: isLogged,
-                name: name,
-                email: email,
-                image: image
-            })
-        )
     }
 
     const toggleTheme = () => {
         setTheme(theme == 'light' ? 'dark' : 'light')
-        saveCookiesTheme(theme == 'light' ? 'dark' : 'light')
-        window.localStorage.setItem('tema', theme ? theme : 'light')
     }
     
     return (
