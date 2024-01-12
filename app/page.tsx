@@ -20,14 +20,16 @@ import CategoriesLoading from "@/app/components/CategoriesLoading"
 import Categories from "@/app/components/Categories"
 import Screen from '@/app/components/Screen'
 import Pagination from '@/app/components/Pagination'
+import { useMyContext } from '@/providers/theme'
 
 export default function Home() {
 
   const [produtos, setProdutos] = useState<any>()
+  const states:any = useMyContext()
+  const { keyword } = states
   
   const searchParams = useSearchParams()
   const [page, setPage] = useState<string>(searchParams.get('page')?.toString() ? searchParams.get('page')?.toString() as string : '1')
-  const [keyword, setKeyword] = useState<string>(searchParams.get('keyword')?.toString() ? searchParams.get('keyword')?.toString() as string : 'tudo')
 
   const { replace } = useRouter()
   const pathname = usePathname()

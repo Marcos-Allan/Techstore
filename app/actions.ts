@@ -1,13 +1,8 @@
 'use server'
 import { cookies } from 'next/headers'
 
-export async function saveCookies(isLogged:boolean, name:string, email:string, image: string) {
-    cookies().set('user', JSON.stringify({
-        isLogged: isLogged,
-        name: name,
-        email: email,
-        image: image
-    }))
+export async function saveCookiesTheme(tema:string) {
+    cookies().set('tema', JSON.stringify(tema))
 }
 
 export async function getCookies(name:string) {
