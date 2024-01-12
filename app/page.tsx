@@ -1,8 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { getProductPage } from "./actions"
+import { useState, useEffect, useCallback } from 'react'
+// CLIENT
+import { getProductPage } from "@/app//actions"
+// SERVER
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
+// CLIENT
+import { useMyContext } from '@/providers/theme'
+// CLIENT
 
 interface Products {
   image: string,
@@ -20,26 +25,33 @@ import CategoriesLoading from "@/app/components/CategoriesLoading"
 import Categories from "@/app/components/Categories"
 import Screen from '@/app/components/Screen'
 import Pagination from '@/app/components/Pagination'
-import { useMyContext } from '@/providers/theme'
 
 export default function Home() {
 
   const [produtos, setProdutos] = useState<any>()
+  // CLIENT
   const states:any = useMyContext()
+  // CLIENT
   const { keyword } = states
+  // CLIENT
   
   const searchParams = useSearchParams()
+  // CLIENT
   const [page, setPage] = useState<string>(searchParams.get('page')?.toString() ? searchParams.get('page')?.toString() as string : '1')
+  // CLIENT
 
   const { replace } = useRouter()
+  // CLIENT
   const pathname = usePathname()
+  // CLIENT
   
-  async function loadProducts(){
+  const loadProducts = useCallback(async () => {
     const proods = await getProductPage(page as any, keyword as string)
     setProdutos(proods)
-  }
+  },[page, keyword])
+  // SERVER
 
-  function paramsS(page:string, keyword:string){
+  const paramsS = useCallback((page:string, keyword:string) => {
     const params = new URLSearchParams(searchParams)
 
     if(page){
@@ -55,13 +67,14 @@ export default function Home() {
     }
 
     replace(`${pathname}?${params.toString()}`)
-  }
-    
+  },[pathname, replace, searchParams])
+  //CLIENT
+  
   useEffect(() => {
       paramsS(page, keyword)
       loadProducts()
       console.log('useEffect chamado')
-  },[page, keyword])
+  },[paramsS, loadProducts])
   
   useEffect(() => {
       setPage('1')
