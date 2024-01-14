@@ -1,7 +1,8 @@
 'use client'
 
 import { useMyContext } from "@/providers/theme"
-import { HiMoon, HiX, HiSun, HiLogout } from "react-icons/hi"
+import { HiMoon, HiX, HiSun, HiLogout, HiFolderOpen } from "react-icons/hi"
+import Link from 'next/link'
 
 export default function SideNav() {
     
@@ -54,6 +55,19 @@ export default function SideNav() {
                     </div>
                 </button>
             )}
+            <Link href='/websocket'
+                className={`lg:w-full flex flex-row justify-center items-center py-3 border-b-2 ${theme == 'light' ? 'border-h-white-200' : 'border-h-gray-300'}`}
+            >
+                <div className='flex items-center gap-3 lg:w-[80%] justify-around'>
+                    <HiFolderOpen className={`
+                        ${theme == 'light' ? 'text-white' : 'text-black'}
+                        text-left
+                    `} />
+                    <p className={`${theme == 'light' ? 'text-white' : 'text-black'} flex-grow-[1] ms-2 text-left`}>
+                        WebSocket
+                    </p>
+                </div>
+            </Link>
 
             
             <button
