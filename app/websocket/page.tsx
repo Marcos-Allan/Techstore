@@ -33,7 +33,7 @@ const WebSocketClient = () => {
     return () => {
       socket.close();
     };
-  }, []);
+  }, [message]);
 
   return (
     <div
@@ -59,7 +59,7 @@ const WebSocketClient = () => {
             My message
           </div>
           {message && message.map((msg) => (
-            <div className={`bg-white max-w-[200px] m-1 p-3 rounded-[8px] self-start rounded-es-none flex flex-col`}>
+            <div key={Math.random() * 999999999999} className={`bg-white max-w-[200px] m-1 p-3 rounded-[8px] self-start rounded-es-none flex flex-col`}>
               <span className={`text-[#4c00ff] font-semibold text-[14px]`}>{msg.user}</span>
               {msg.text}
             </div>
