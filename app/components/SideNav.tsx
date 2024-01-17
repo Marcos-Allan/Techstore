@@ -1,7 +1,7 @@
 'use client'
 
 import { useMyContext } from "@/providers/theme"
-import { HiMoon, HiX, HiSun, HiLogout, HiFolderOpen } from "react-icons/hi"
+import { HiMoon, HiX, HiSun, HiLogout, HiChat } from "react-icons/hi"
 import Link from 'next/link'
 
 export default function SideNav() {
@@ -22,26 +22,28 @@ export default function SideNav() {
             `}
         >
             <button
-                className={`lg:w-full flex flex-row justify-center items-center py-3 border-b-2 ${theme == 'light' ? 'border-h-white-200' : 'border-h-gray-300'}`}
+                className={`lg:w-full flex flex-row justify-start items-center py-3 border-b-2 ${theme == 'light' ? 'border-h-white-200' : 'border-h-gray-300'} w-[200px] px-4`}
                 onClick={() => toggleTheme()}
             >
-                <div className='flex items-center gap-3 lg:w-[80%] justify-around'>
-                    {theme == 'light' ? (
-                        <HiSun className='text-white text-left' />
-                    ):(
-                        <HiMoon className='text-black text-left' />
-                    )}
-                    <p className={`${theme == 'light' ? 'text-white' : 'text-black'} flex-grow-[1] ms-2 text-left`}>
-                        Tema {theme == 'light' ? 'Claro' : 'Escuro'}
+                    <div className='flex items-center gap-3 lg:w-[80%] justify-around'>
+                        {theme == 'light' ? (
+                            <HiSun className='text-white text-left' />
+                        ):(
+                            <HiMoon className='text-black text-left' />
+                        )}
+                        <p className={`${theme == 'light' ? 'text-white' : 'text-black'} flex-grow-[1] ms-2 text-left`}>
+                            Tema {theme == 'light' ? 'Claro' : 'Escuro'}
                     </p>
-                </div>
+                    </div>
+                    
+                    
                 
             </button>
             
             {userS.isLogged == true && (
 
                 <button
-                    className={`lg:w-full flex flex-row justify-center items-center py-3 border-b-2 ${theme == 'light' ? 'border-h-white-200' : 'border-h-gray-300'}`}
+                    className={`lg:w-full flex flex-row justify-start items-center py-3 border-b-2 ${theme == 'light' ? 'border-h-white-200' : 'border-h-gray-300'} w-[200px] px-4`}
                     onClick={() => toggleLogin(false, '', '', '')}
                 >
                     <div className='flex items-center gap-3 lg:w-[80%] justify-around'>
@@ -55,16 +57,16 @@ export default function SideNav() {
                     </div>
                 </button>
             )}
-            <Link href='/websocket'
-                className={`lg:w-full flex flex-row justify-center items-center py-3 border-b-2 ${theme == 'light' ? 'border-h-white-200' : 'border-h-gray-300'}`}
+            <Link href='/chat'
+                className={`lg:w-full flex flex-row justify-start items-center py-3 border-b-2 ${theme == 'light' ? 'border-h-white-200' : 'border-h-gray-300'} w-[200px] px-4`}
             >
                 <div className='flex items-center gap-3 lg:w-[80%] justify-around'>
-                    <HiFolderOpen className={`
+                    <HiChat className={`
                         ${theme == 'light' ? 'text-white' : 'text-black'}
                         text-left
                     `} />
                     <p className={`${theme == 'light' ? 'text-white' : 'text-black'} flex-grow-[1] ms-2 text-left`}>
-                        WebSocket
+                        Chat
                     </p>
                 </div>
             </Link>

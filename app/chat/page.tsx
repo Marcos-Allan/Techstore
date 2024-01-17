@@ -1,6 +1,6 @@
 'use client'
 import { useMyContext } from '@/providers/theme';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface Msg{
   text: string,
@@ -9,9 +9,11 @@ interface Msg{
 }
 
 const WebSocketClient = () => {
+
+  const chatBox:any = useRef()
   
   const states:any = useMyContext()
-  const { theme, userS } = states
+  const { theme, menuOpen, toggleMenuOpen, userS } = states
   const [yourId, setYourId] = useState<any>(Math.floor(Math.random() * 9999))
   const [messages, setMessages] = useState<Msg[]>([]);
   const [webSocket, setWebSocket] = useState<any>(null);
@@ -19,6 +21,7 @@ const WebSocketClient = () => {
   
 
   useEffect(() => {
+    menuOpen == true && toggleMenuOpen()
     const ws = new WebSocket('wss://techstore-backend.onrender.com');
   
     ws.addEventListener('open', (event) => {
@@ -56,11 +59,21 @@ const WebSocketClient = () => {
         }
       }
     });
-  
+    
     return () => {
       ws.close();
     };
   }, []);
+  
+  useEffect(() => {
+    rolarAteOFinal()
+  },[messages])
+
+  const rolarAteOFinal = () => {
+    if (chatBox.current) {
+      chatBox.current.scrollTop = chatBox.current.scrollHeight;
+    }
+  };
 
   const handleInputChange = (event:any) => {
     setNewMessage(event.target.value);
@@ -72,7 +85,7 @@ const WebSocketClient = () => {
     if (webSocket && newMessage.trim() !== '') {
       const messageToSend = {
         text: newMessage,
-        user: userS.isLogged == true ? userS.name : `user${Math.floor(Math.random() * 9999)}`,
+        user: userS.isLogged == true ? userS.name : `user${yourId}`,
         id: yourId
       };
   
@@ -89,7 +102,7 @@ const WebSocketClient = () => {
           screen
           ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
           relative
-          w-full min-h-screen overflow-x-hidden flex flex-wrap flex-col justify-end items-center pt-[80px]
+          w-full overflow-x-hidden flex flex-wrap flex-col justify-start items-center pt-[80px]
           scrollbar-none lg:scrollbar-thin
           ${theme == 'light'
               ? 'lg:scrollbar-track-h-white-200 lg:scrollbar-thumb-h-gray-300'
@@ -97,18 +110,29 @@ const WebSocketClient = () => {
           }
       `}
     >   
-        <div className={`
-          flex-grow-[1] border border-h-gray-300 border-x-0 w-full flex flex-col px-3 py-2
-        `}>
+        <div
+          ref={chatBox}
+          className={`
+            h-[calc(100%-60px)] w-full flex flex-col items-center px-3 py-2 overflow-y-scroll
+          `}
+        >
           {messages && messages.map((msg) => (
             <>
               {msg.id !== yourId ? (
-                <div key={Math.random() * 999999999999} className={`bg-white max-w-[200px] m-1 p-3 rounded-[8px] self-start rounded-es-none flex flex-col`}>
-                  <span className={`text-[#4c00ff] font-semibold text-[14px]`}>{msg.user}</span>
+                <div key={Math.random() * 999999999999} className={`
+                ${theme == 'light' ? 'text-black' : 'text-white'}
+                ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}
+                  max-w-[200px] m-1 p-3 rounded-[8px] self-start rounded-es-none flex flex-col text-black
+                `}>
+                  <span className={`text-[#008cff] font-semibold text-[14px]`}>{msg.user}</span>
                   {msg.text}
                 </div>
               ):(
-                <div className={`bg-white max-w-[200px] m-1 p-3 rounded-[8px] self-end rounded-ee-none`}>
+                <div className={`
+                ${theme == 'light' ? 'bg-[#c7fd9e]' : 'bg-[#075e54]'}
+                max-w-[200px] m-1 p-3 rounded-[8px] self-end rounded-ee-none
+                ${theme == 'light' ? 'text-black' : 'text-white'}
+                `}>
                   {msg.text}
                 </div>
               )}
@@ -118,7 +142,9 @@ const WebSocketClient = () => {
         </div>
 
         <form
-          className={`w-full flex flex-row items-center justify-center mt-3 pb-3`}
+          className={`w-full h-[60px] fixed bottom-0 left-0 flex flex-row items-center justify-center mt-3 px-4 pb-3 border-t pt-3
+            ${theme == 'light' ? 'border-h-gray-300' : 'border-h-white-200'}
+          `}
           onSubmit={handleSubmit}
         >
           <input
@@ -129,7 +155,10 @@ const WebSocketClient = () => {
               flex-grow-[1] max-w-[420px] border ps-2 py-1
               ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
               ${theme == 'light' ? 'border-h-gray-300' : 'border-h-white-200'}
+              ${theme == 'light' ? 'text-black' : 'text-white'}
+              ${theme == 'light' ? 'focus:outline-h-gray-300' : 'focus:outline-h-white-200'}
               placeholder:${theme == 'light' ? 'text-black' : 'text-white'}
+              outline-[0.5px]
             `}
             placeholder='Digite Sua Mensagem'
           />
