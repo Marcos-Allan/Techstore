@@ -4,36 +4,84 @@ import React, { useState, useEffect } from 'react';
 
 interface Msg{
   text: string,
-  user: string
+  user: string,
+  id: number,
 }
 
 const WebSocketClient = () => {
   
   const states:any = useMyContext()
-  const { theme } = states
-
-  const [message, setMessage] = useState<Msg[]>([])
-  const [text, setText] = useState<string>('')
+  const { theme, userS } = states
+  const [yourId, setYourId] = useState<any>(Math.floor(Math.random() * 9999))
+  const [messages, setMessages] = useState<Msg[]>([]);
+  const [webSocket, setWebSocket] = useState<any>(null);
+  const [newMessage, setNewMessage] = useState<string>('');
+  
 
   useEffect(() => {
-    const socket = new WebSocket('wss://techstore-backend.onrender.com');
-
-    socket.addEventListener('open', (event) => {
+    const ws = new WebSocket('wss://techstore-backend.onrender.com');
+  
+    ws.addEventListener('open', (event) => {
       console.log('Conectado ao servidor WebSocket');
+      setWebSocket(ws)
     });
-
-    socket.addEventListener('message', (event) => {
-      console.log(`Mensagem recebida do servidor: ${event.data}`);
-      setMessage([...message as any, {
-        text: event.data,
-        user: 'Oruam'
-      }])
+  
+    ws.addEventListener('message', (event) => {
+      const data = event.data;
+    
+      if (data instanceof Blob) {
+        const reader = new FileReader();
+    
+        reader.onload = function () {
+          const textData = reader.result;
+          console.log('Dados lidos do Blob:',textData);
+          console.log(`${JSON.parse(textData as any).user}: ${JSON.parse(textData as any).text}`);
+          setMessages((prevMessages:any) => [...prevMessages,
+            {
+              user: JSON.parse(textData as any).user,
+              text: JSON.parse(textData as any).text,
+              id: JSON.parse(textData as any).id
+            }
+          ]
+          )
+        };
+    
+        reader.readAsText(data);
+      } else {
+        try {
+          const parsedData = JSON.parse(data);
+          console.log('Mensagem JSON recebida do servidor:', parsedData);
+        } catch (error) {
+          console.error('Erro ao fazer parse da mensagem JSON:', error);
+        }
+      }
     });
-
+  
     return () => {
-      socket.close();
+      ws.close();
     };
-  }, [message]);
+  }, []);
+
+  const handleInputChange = (event:any) => {
+    setNewMessage(event.target.value);
+  };
+
+  const handleSubmit = (event:any) => {
+    event.preventDefault();
+  
+    if (webSocket && newMessage.trim() !== '') {
+      const messageToSend = {
+        text: newMessage,
+        user: userS.isLogged == true ? userS.name : `user${Math.floor(Math.random() * 9999)}`,
+        id: yourId
+      };
+  
+      webSocket.send(JSON.stringify(messageToSend));
+      setNewMessage('');
+    } else {
+      return
+    }
+  }
 
   return (
     <div
@@ -48,40 +96,35 @@ const WebSocketClient = () => {
               : 'lg:scrollbar-track-h-gray-300 lg:scrollbar-thumb-h-white-200'
           }
       `}
-    >
-      <h1 className={`font-bold text-[19px] mb-2 ${theme == 'light' ? 'text-black' : 'text-white'} mt-2`}>WebSocket Client</h1>
-        
+    >   
         <div className={`
           flex-grow-[1] border border-h-gray-300 border-x-0 w-full flex flex-col px-3 py-2
         `}>
-
-          <div className={`bg-white max-w-[200px] m-1 p-3 rounded-[8px] self-end rounded-ee-none`}>
-            My message
-          </div>
-          {message && message.map((msg) => (
-            <div key={Math.random() * 999999999999} className={`bg-white max-w-[200px] m-1 p-3 rounded-[8px] self-start rounded-es-none flex flex-col`}>
-              <span className={`text-[#4c00ff] font-semibold text-[14px]`}>{msg.user}</span>
-              {msg.text}
-            </div>
+          {messages && messages.map((msg) => (
+            <>
+              {msg.id !== yourId ? (
+                <div key={Math.random() * 999999999999} className={`bg-white max-w-[200px] m-1 p-3 rounded-[8px] self-start rounded-es-none flex flex-col`}>
+                  <span className={`text-[#4c00ff] font-semibold text-[14px]`}>{msg.user}</span>
+                  {msg.text}
+                </div>
+              ):(
+                <div className={`bg-white max-w-[200px] m-1 p-3 rounded-[8px] self-end rounded-ee-none`}>
+                  {msg.text}
+                </div>
+              )}
+            </>
           ))}
 
         </div>
 
         <form
           className={`w-full flex flex-row items-center justify-center mt-3 pb-3`}
-          onSubmit={(e) => {
-            e.preventDefault()
-            setMessage([...message as any, {
-              text: text,
-              user: 'Marcos'
-            }])
-            setText('')
-          }}
+          onSubmit={handleSubmit}
         >
           <input
             type='text'
-            onChange={(e) => setText(e.target.value)}
-            value={text}
+            onChange={handleInputChange}
+            value={newMessage}
             className={`
               flex-grow-[1] max-w-[420px] border ps-2 py-1
               ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
