@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 // CLIENT
-import { getProductPage } from "@/app//actions"
+import { getProductPage, getProducts } from "@/app//actions"
 // SERVER
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 // CLIENT
@@ -32,7 +32,7 @@ export default function Home() {
   // CLIENT
   const states:any = useMyContext()
   // CLIENT
-  const { keyword } = states
+  const { keyword, setKeyword } = states
   // CLIENT
   
   const searchParams = useSearchParams()
@@ -46,6 +46,7 @@ export default function Home() {
   // CLIENT
   
   const loadProducts = useCallback(async () => {
+    // const proods = await getProducts()
     const proods = await getProductPage(page as any, keyword as string)
     setProdutos(proods)
   },[page, keyword])
@@ -63,28 +64,23 @@ export default function Home() {
     if(keyword){
       params.set('keyword', keyword)
     }else{
-      params.delete('keyword')
+      setKeyword('tudo')
+      params.set('keyword', keyword)
     }
 
     replace(`${pathname}?${params.toString()}`)
   },[pathname, replace, searchParams])
   //CLIENT
   
-  // useEffect(() => {
-  //     paramsS(page, keyword)
-  //     loadProducts()
-  //     console.log('useEffect chamado')
-  // },[page, keyword])
-  
   useEffect(() => {
-      paramsS(page, keyword)
-      loadProducts()
-      console.log('useEffect chamado')
+    paramsS(page, keyword)
+    loadProducts()
+    console.log('useEffect chamado')
   },[page, keyword, paramsS, loadProducts])
   
   useEffect(() => {
-      setPage('1')
-  },[keyword])
+    setKeyword(searchParams.get('keyword')?.toString() ? searchParams.get('keyword')?.toString() : keyword)
+  },[])
 
   function alterPage(page:string, number:number){
     const pageCurrent = Number(page)

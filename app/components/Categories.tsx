@@ -1,12 +1,16 @@
 'use client'
 import { useMyContext } from '@/providers/theme'
-import { useState } from  'react'
+import { useState, useEffect } from  'react'
 
 export default function Categories(){
 
-    const [category, setCategory] = useState<string>('tudo')
+    const states:any = useMyContext()
+    const { theme, keyword, setKeyword } = states
+
+    const [category, setCategory] = useState<string>('')
 
     function handleCategory(categorySet:string){
+
         if(category == categorySet){
             setCategory('tudo')
             setKeyword('tudo')
@@ -16,8 +20,29 @@ export default function Categories(){
         setKeyword(categorySet)
     }
 
-    const states:any = useMyContext()
-    const { theme, keyword, setKeyword } = states
+    useEffect(() => {
+        switch (keyword) {
+            case 'tudo':
+                setCategory('tudo')
+                break;
+
+            case 'tênis':
+                setCategory('tênis')
+                break;
+
+            case 'camisas':
+                setCategory('camisas')
+                break;
+
+            case 'calças':
+                setCategory('calças')
+                break;
+        
+            default:
+                return
+                break;
+        }
+    },[keyword])
 
     return(
         <div className={`

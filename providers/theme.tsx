@@ -8,7 +8,7 @@ export const MyProvider = ({ children } : { children: React.ReactNode }) => {
     
     const [theme, setTheme] = useState<string | null>(themeAplicked)
     const [menuOpen, setMenuOpen] = useState<boolean>(false)
-    const [keyword, setKeyword] = useState<string>('tudo')
+    const [keyword, setKeyword] = useState<string>('')
 
     const toggleMenuOpen = () => {
         setMenuOpen(!menuOpen)

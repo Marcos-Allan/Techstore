@@ -9,6 +9,8 @@ const nextConfig = {
             'lh3.googleusercontent.com',
             'i.shafacdn.net',
             'acdn.mitiendanube.com',
+            'cdn.manualdohomem.com.br',
+            'manualdohomemmoderno.com.br',
         ]
     }
 }
