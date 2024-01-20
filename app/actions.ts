@@ -23,8 +23,8 @@ export async function getProduct(id:string){
     return data
 }
 
-export async function getProductPage(page:number = 1, keyword:string = 'tudo'){
-    const res = await fetch(`https://techstore-backend.onrender.com/product?page=${page}&keyword=${keyword}`)
+export async function getProductPage(page:number = 2, keyword:string = 'tudo'){
+    const res = await fetch(`https://techstore-backend.onrender.com/product?page=${page}&keyword=${keyword}`, {cache: 'no-store'})
 
     const data = await res.json()
     return data

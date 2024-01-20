@@ -12,7 +12,7 @@ export default function Screen({children}:{children:React.ReactNode}){
                 screen
                 ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
                 relative
-                w-full min-h-screen overflow-x-hidden flex flex-wrap flex-row justify-center items-center pt-[80px]
+                w-full h-[100%-80px] overflow-x-hidden flex flex-wrap flex-row justify-center items-center mt-[80px]
                 lg:flex-row scrollbar-none lg:scrollbar-thin
                 ${theme == 'light'
                     ? 'lg:scrollbar-track-h-white-200 lg:scrollbar-thumb-h-gray-300'

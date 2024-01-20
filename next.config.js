@@ -8,9 +8,7 @@ const nextConfig = {
             'encrypted-tbn0.gstatic.com',
             'lh3.googleusercontent.com',
             'i.shafacdn.net',
-            'acdn.mitiendanube.com',
-            'cdn.manualdohomem.com.br',
-            'manualdohomemmoderno.com.br',
+            'acdn.mitiendanube.com'
         ]
     }
 }

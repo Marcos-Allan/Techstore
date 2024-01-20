@@ -103,17 +103,17 @@ const WebSocketClient = () => {
           ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
           relative
           w-full overflow-x-hidden flex flex-wrap flex-col justify-start items-center pt-[80px]
-          scrollbar-none lg:scrollbar-thin
-          ${theme == 'light'
-              ? 'lg:scrollbar-track-h-white-200 lg:scrollbar-thumb-h-gray-300'
-              : 'lg:scrollbar-track-h-gray-300 lg:scrollbar-thumb-h-white-200'
-          }
       `}
     >   
         <div
           ref={chatBox}
           className={`
             h-[calc(100%-60px)] w-full flex flex-col items-center px-3 py-2 overflow-y-scroll
+            scrollbar-none lg:scrollbar-thin
+            ${theme == 'light'
+                ? 'lg:scrollbar-track-h-white-200 lg:scrollbar-thumb-h-gray-300'
+                : 'lg:scrollbar-track-h-gray-300 lg:scrollbar-thumb-h-white-200'
+            }
           `}
         >
           {messages && messages.map((msg) => (
