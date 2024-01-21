@@ -25,6 +25,7 @@ import CategoriesLoading from "@/app/components/CategoriesLoading"
 import Categories from "@/app/components/Categories"
 import Screen from '@/app/components/Screen'
 import Pagination from '@/app/components/Pagination'
+import Loader from './components/Loader'
 
 export default function Home() {
 
@@ -93,7 +94,7 @@ export default function Home() {
       <Suspense fallback={<CategoriesLoading />}>
         <Categories />
       </Suspense>
-      {produtos && produtos.map((product:Products, index:number) => (
+      {produtos ? produtos.map((product:Products, index:number) => (
         <Suspense key={index} fallback={<CardProductLoading />}>
           <CardProduct
             descont={product.descont}
@@ -106,7 +107,9 @@ export default function Home() {
             keywords={product.keywords}
           />
         </Suspense>
-      ))}
+      )):(
+        <Loader />
+      )}
       <Pagination decreasePage={() => alterPage(page, -1)} increasePage={() => alterPage(page, 1)} page={page} limit={produtos} />
     </Screen>
   )

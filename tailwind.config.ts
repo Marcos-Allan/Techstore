@@ -24,6 +24,54 @@ const config: Config = {
   },
   plugins: [
     require ( 'tailwind-scrollbar' ) ,
+    function ({ addUtilities }:{ addUtilities:any }) {
+      const newUtilities = {
+        '.object-cover': {
+          'object-fit': 'cover',
+        },
+        '.object-contain': {
+          'object-fit': 'contain',
+        },
+        '.object-fill': {
+          'object-fit': 'fill',
+        },
+        '.object-none': {
+          'object-fit': 'none',
+        },
+        '.object-scale-down': {
+          'object-fit': 'scale-down',
+        },
+        '.object-center': {
+          'object-position': 'center',
+        },
+        '.object-top': {
+          'object-position': 'top',
+        },
+        '.object-right': {
+          'object-position': 'right',
+        },
+        '.object-bottom': {
+          'object-position': 'bottom',
+        },
+        '.object-left': {
+          'object-position': 'left',
+        },
+        '.object-top-right': {
+          'object-position': 'top right',
+        },
+        '.object-top-left': {
+          'object-position': 'top left',
+        },
+        '.object-bottom-right': {
+          'object-position': 'bottom right',
+        },
+        '.object-bottom-left': {
+          'object-position': 'bottom left',
+        },
+      };
+
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    },
   ],
 }
 export default config

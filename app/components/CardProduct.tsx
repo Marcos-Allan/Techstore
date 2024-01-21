@@ -21,6 +21,17 @@ export default function CardProduct(props: Products) {
     const states:any = useMyContext()
     const { theme } = states
 
+    const renderStars = (numStars:number, theme:string) => {
+        const starArray = Array.from({ length: numStars }, (_, index) => (
+          <HiStar
+            key={index}
+            className={`text-[26px] ${theme === 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`}
+          />
+        ));
+      
+        return <>{starArray}</>;
+      };
+
     return(
             <div
                 key={props.key}
@@ -56,7 +67,7 @@ export default function CardProduct(props: Products) {
                     src={props.image}
                     width={250}
                     height={148}
-                    className='mx-auto rounded-[8px] w-[250px] h-[148px]'
+                    className='mx-auto rounded-[8px] w-[250px] h-[148px] object-cover'
                 />
                 
                 <div className="flex justify-between items-center w-full mt-2 h-auto">
@@ -79,39 +90,7 @@ export default function CardProduct(props: Products) {
                 <div
                     className="flex flex-row-reverse w-full"
                 >   
-                {Number(props.stars) == 1 && (
-                    <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                )}
-                {Number(props.stars) == 2 && (
-                    <>
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                    </>
-                )}
-                {Number(props.stars) == 3 && (
-                    <>
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                    </>
-                )}
-                {Number(props.stars) == 4 && (
-                    <>
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                    </>
-                )}
-                {Number(props.stars) == 5 && (
-                    <>
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                        <HiStar className={`text-[26px] ${theme == 'light' ? 'text-h-gray-300' : 'text-h-white-200'} p-1`} />
-                    </>
-                )}
+                {renderStars(Number(props.stars), theme)}
                 
             </div>
 
@@ -120,9 +99,9 @@ export default function CardProduct(props: Products) {
                 ${theme == 'light' ? 'text-black' : 'text-white'}
                 ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
                 uppercase text-[12px] mt-2 text-center w-full my-2 mx-auto p-3
-                rounded-[8px]
+                rounded-[8px] cursor-pointer
                 `}>
-                ADICIONAR ao Carrinho
+                adicionar ao carrinho
                 </p>
             </div>
     )

@@ -26,7 +26,7 @@ export default function Pagination(props: Props){
             <HiChevronLeft
             className={`
               ${theme == 'light' ? 'text-black' : 'text-white'}
-              text-[22px]
+              text-[22px] cursor-pointer
               ${props.page == '1' && 'hidden'}
               `}
             />
@@ -41,7 +41,7 @@ export default function Pagination(props: Props){
               className={`
                 ${theme == 'light' ? 'text-black' : 'text-white'}
                 ${props.limit == 0 && 'hidden'}
-                text-[22px]
+                text-[22px] cursor-pointer
                 `}
               />
           </div> 

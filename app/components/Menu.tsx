@@ -84,7 +84,7 @@ export default function Menu() {
                     <div
                         onClick={() => setOpenSearch(true)}
                         className={`
-                            flex justify-center py-1 items-center flex-col rounded-[8px] hover:opacity-50
+                            flex justify-center py-1 items-center flex-col rounded-[8px] hover:opacity-50 cursor-pointer
                         `}
                     >
                         <HiSearch
@@ -103,7 +103,7 @@ export default function Menu() {
 
                     <div
                         onClick={() => toggleMenuOpen()}
-                        className="flex lg:hidden justify-center items-center flex-col py-1 rounded-[8px] hover:opacity-50"
+                        className="flex lg:hidden justify-center items-center flex-col py-1 rounded-[8px] hover:opacity-50 cursor-pointer"
                     >
                         <HiOutlineMenu
                             className={`
@@ -125,7 +125,13 @@ export default function Menu() {
                 w-full h-[110%] fixed ${openSearch == true ? 'top-0' : '-top-[110%]'} left-0 z-[51] opacity-95 flex justify-center items-start transition-all duration-500
                 ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
             `}>
-                <div
+                <form
+                    onSubmit={(e) => {
+                        e.preventDefault()
+                        setKeyword(inputValue)
+                        setOpenSearch(false)
+                        setInputValue('')
+                    }}
                     className={`
                         w-10/12 flex flex-row rounded-[8px] overflow-hidden mt-[100px] justify-center
                     `}
@@ -144,20 +150,17 @@ export default function Menu() {
                             placeholder:${theme == 'light' ? 'text-black' : 'text-white'} placeholder:opacity-80 capitalize
                         `}
                     />
-                    <button
-                        onClick={() => setKeyword(inputValue)}
-                        className={`w-[30px] border border-solid ${theme == 'light' ? 'border-black' : 'border-white'} h-[30px] flex rounded-tr-[8px] rounded-br-[8px] items-center justify-center ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}`}
-
-                    >
-                        <HiX
-                            onClick={() => setOpenSearch(false)}
-                            className={`
-                            ${theme == 'light' ? 'text-black' : 'text-white'}
-                            text-[18px]
-                            `}
+                    <input type='submit'
+                        className={`w-[30px] border border-solid h-[30px] flex rounded-tr-[8px] rounded-br-[8px] items-center justify-center
+                        ${theme == 'light' ? 'border-black' : 'border-white'}
+                        ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}
+                        ${theme == 'light' ? 'text-black' : 'text-white'}
+                        `}
+                        value={
+                            'x'
+                        }
                         />
-                    </button>
-                </div>
+                </form>
             </div>
 
             {/* MENU LATERAL MOBILE */}

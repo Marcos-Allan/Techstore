@@ -163,7 +163,7 @@ const WebSocketClient = () => {
             placeholder='Digite Sua Mensagem'
           />
           <input type='submit' className={`
-              px-3 border border-s-0 py-1
+              px-3 border border-s-0 py-1 cursor-pointer
               ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}
               ${theme == 'light' ? 'text-black' : 'text-white'}
               ${theme == 'light' ? 'border-h-gray-300' : 'border-h-white-200'}

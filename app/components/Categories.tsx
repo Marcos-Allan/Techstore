@@ -54,7 +54,7 @@ export default function Categories(){
             <p
                 className={`flex-grow-[1] text-center h-[32px] flex items-center justify-center
                 ${theme == 'light' && category == 'tudo' && 'bg-h-gray-300 rounded-[32px] text-gray-50 hover:opacity-50'}
-                ${theme == 'dark' && category == 'tudo' && 'bg-h-white-100 rounded-[32px] text-gray-950 hover:opacity-70'}
+                ${theme == 'dark' && category == 'tudo' && 'bg-h-white-100 rounded-[32px] text-gray-950 hover:opacity-70'} cursor-pointer
                 `}
                 onClick={() => handleCategory('tudo')}
             >
@@ -63,7 +63,7 @@ export default function Categories(){
             <p
                 className={`flex-grow-[1] text-center h-[32px] flex items-center justify-center
                 ${theme == 'light' && category == 'tênis' &&  'bg-h-gray-300 rounded-[32px] text-gray-50 hover:opacity-50'}
-                ${theme == 'dark' && category == 'tênis' &&  'bg-h-white-100 rounded-[32px] text-gray-950 hover:opacity-70'}
+                ${theme == 'dark' && category == 'tênis' &&  'bg-h-white-100 rounded-[32px] text-gray-950 hover:opacity-70'} cursor-pointer
                 `}
                 onClick={() => handleCategory('tênis')}
             >
@@ -72,7 +72,7 @@ export default function Categories(){
             <p
                 className={`flex-grow-[1] text-center h-[32px] flex items-center justify-center
                 ${theme == 'light' && category == 'camisas' && 'bg-h-gray-300 rounded-[32px] text-gray-50 hover:opacity-50'}
-                ${theme == 'dark' && category == 'camisas' && 'bg-h-white-100 rounded-[32px] text-gray-950 hover:opacity-70'}
+                ${theme == 'dark' && category == 'camisas' && 'bg-h-white-100 rounded-[32px] text-gray-950 hover:opacity-70'} cursor-pointer
                 `}
                 onClick={() => handleCategory('camisas')}
             >
@@ -81,7 +81,7 @@ export default function Categories(){
             <p
             className={`flex-grow-[1] text-center h-[32px] flex items-center justify-center   
                 ${theme == 'light' && category == 'calças' && 'bg-h-gray-300 rounded-[32px] text-gray-50 hover:opacity-50'}
-                ${theme == 'dark' && category == 'calças' && 'bg-h-white-100 rounded-[32px] text-gray-950 hover:opacity-70'}
+                ${theme == 'dark' && category == 'calças' && 'bg-h-white-100 rounded-[32px] text-gray-950 hover:opacity-70'} cursor-pointer
                 `}
                 onClick={() => handleCategory('calças')}
             >

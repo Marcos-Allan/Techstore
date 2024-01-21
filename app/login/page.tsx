@@ -55,7 +55,7 @@ export default function Login() {
             {userS.isLogged == false ? (
             <div
                 className={`
-                w-[80%] max-w-[400px] p-6 rounded-[8px] cursor-pointer
+                w-[80%] max-w-[400px] p-6 rounded-[8px]
                 ${theme == 'light' ? 'bg-h-white-200' : 'bg-h-gray-300'}
                 ${loading == false ? 'opacity-100' : 'opacity-60'}
                 `}
@@ -65,7 +65,7 @@ export default function Login() {
                     className={`
                     w-full p-4 flex rounded-[8px] items-center justify-around
                     ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
-                    ${loading == false ? 'opacity-100' : 'opacity-60'}
+                    ${loading == false ? 'opacity-100' : 'opacity-60'} cursor-pointer
                     `}
                 >
                     <p
