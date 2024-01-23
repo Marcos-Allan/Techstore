@@ -15,6 +15,7 @@ interface Products {
   price: string,
   stars: string,
   keywords: string,
+  description: string,
   _id: string,
 }
   
@@ -105,6 +106,7 @@ export default function Home() {
             id={product._id}
             stars={product.stars}
             keywords={product.keywords}
+            description={product.description}
           />
         </Suspense>
       )):(

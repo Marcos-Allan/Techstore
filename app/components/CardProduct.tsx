@@ -1,6 +1,5 @@
 'use client'
-import { HiOutlineInformationCircle } from "react-icons/hi";
-import { HiStar } from "react-icons/hi";
+import { HiOutlineInformationCircle, HiStar } from "react-icons/hi";
 import Link from 'next/link'
 import Image from 'next/image'
 import { useMyContext } from "@/providers/theme";
@@ -13,13 +12,14 @@ interface Products {
     index: number,
     stars: string,
     keywords: string,
+    description: string,
     id: string,
 }
 
 
 export default function CardProduct(props: Products) {
     const states:any = useMyContext()
-    const { theme } = states
+    const { theme, addProductToCart } = states
 
     const renderStars = (numStars:number, theme:string) => {
         const starArray = Array.from({ length: numStars }, (_, index) => (
@@ -95,6 +95,14 @@ export default function CardProduct(props: Products) {
             </div>
 
                 <p
+                onClick={() => addProductToCart({ 
+                    price: props.price,
+                    descont: props.descont,
+                    image: props.image,
+                    description: props.description,
+                    stars: props.stars,
+                    keywords: props.keywords
+                })}
                 className={`
                 ${theme == 'light' ? 'text-black' : 'text-white'}
                 ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}
