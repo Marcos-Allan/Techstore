@@ -60,7 +60,8 @@ export default function Home() {
     if(page){
       params.set('page', page)
     }else{
-      params.delete('page')
+      setPage('1')
+      params.set('page', page)
     }
 
     if(keyword){
@@ -71,7 +72,7 @@ export default function Home() {
     }
 
     replace(`${pathname}?${params.toString()}`)
-  },[pathname, replace, searchParams])
+  },[pathname, replace, searchParams, setKeyword])
   //CLIENT
   
   useEffect(() => {
@@ -81,7 +82,7 @@ export default function Home() {
   },[page, keyword, paramsS, loadProducts])
   
   useEffect(() => {
-    setKeyword(searchParams.get('keyword')?.toString() ? searchParams.get('keyword')?.toString() : keyword)
+    setKeyword(searchParams.get('keyword')?.toString() ? searchParams.get('keyword')?.toString() : 'tudo')
   },[])
 
   function alterPage(page:string, number:number){

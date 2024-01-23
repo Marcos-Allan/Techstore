@@ -63,7 +63,7 @@ export default function WebSocketClient() {
     return () => {
       ws.close();
     };
-  }, []);
+  }, [menuOpen, toggleMenuOpen]);
   
   useEffect(() => {
     rolarAteOFinal()

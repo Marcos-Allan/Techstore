@@ -17,7 +17,7 @@ export default function Cart(){
         }else{
             return
         }
-    },[itemsCart])
+    },[itemsCart, menuOpen, toggleMenuOpen])
 
     return(
         <div
