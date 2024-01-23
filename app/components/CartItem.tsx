@@ -8,6 +8,7 @@ interface Product{
     price: string,
     descont: string,
     image: string,
+    key: string,
     description: string,
     stars: string,
     keywords: string,
@@ -21,6 +22,7 @@ export default function CartItem(props: Product){
 
     return(
         <div
+            key={props.key}
             className={`
                  relative pb-[50px] w-[340px] lg:w-full min-h-[350px] flex flex-wrap flex-row justify-center items-center p-3 lg:p-1 border lg:border-x-0 lg:border-t-0 m-0
                 ${theme == 'light' ? 'bg-h-white-100' : 'bg-h-black-500'}

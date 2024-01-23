@@ -34,6 +34,7 @@ export default function Cart(){
         `}>
             {items.length > 0 ? items.map((item:any) => (
                 <CartItem
+                    key={item.image}
                     image={item.image}
                     keywords={item.keywords}
                     price={item.price}

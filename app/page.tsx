@@ -83,7 +83,7 @@ export default function Home() {
   
   useEffect(() => {
     setKeyword(searchParams.get('keyword')?.toString() ? searchParams.get('keyword')?.toString() : 'tudo')
-  },[])
+  },[searchParams, setKeyword])
 
   function alterPage(page:string, number:number){
     const pageCurrent = Number(page)
