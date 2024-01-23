@@ -1,7 +1,7 @@
 'use client'
 
 import { useMyContext } from "@/providers/theme"
-import { HiMoon, HiX, HiSun, HiLogout, HiChat } from "react-icons/hi"
+import { HiMoon, HiX, HiSun, HiLogout, HiChat, HiShoppingCart } from "react-icons/hi"
 import Link from 'next/link'
 
 export default function SideNav() {
@@ -57,6 +57,21 @@ export default function SideNav() {
                     </div>
                 </button>
             )}
+
+            <Link href='/cart'
+                className={`lg:w-full flex flex-row justify-start items-center py-3 border-b-2 ${theme == 'light' ? 'border-h-white-200' : 'border-h-gray-300'} w-[200px] px-4`}
+            >
+                <div className='flex items-center gap-3 lg:w-[80%] justify-around'>
+                    <HiShoppingCart className={`
+                        ${theme == 'light' ? 'text-white' : 'text-black'}
+                        text-left
+                    `} />
+                    <p className={`${theme == 'light' ? 'text-white' : 'text-black'} flex-grow-[1] ms-2 text-left`}>
+                        Cart
+                    </p>
+                </div>
+            </Link>
+
             <Link href='/chat'
                 className={`lg:w-full flex flex-row justify-start items-center py-3 border-b-2 ${theme == 'light' ? 'border-h-white-200' : 'border-h-gray-300'} w-[200px] px-4`}
             >
@@ -70,7 +85,6 @@ export default function SideNav() {
                     </p>
                 </div>
             </Link>
-
             
             <button
                 onClick={() => toggleMenuOpen()}

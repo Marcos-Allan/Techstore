@@ -8,7 +8,7 @@ interface Msg{
   id: number,
 }
 
-const WebSocketClient = () => {
+export default function WebSocketClient() {
 
   const chatBox:any = useRef()
   
@@ -174,5 +174,3 @@ const WebSocketClient = () => {
     </div>
   );
 };
-
-export default WebSocketClient;
