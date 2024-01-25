@@ -12,12 +12,11 @@ export default function Cart(){
 
     useEffect(() => {
         setItems(itemsCart)
-        if(menuOpen == true){
-            toggleMenuOpen()
-        }else{
-            return
-        }
-    },[itemsCart, menuOpen, toggleMenuOpen])
+    },[itemsCart])
+
+    useEffect(() => {
+        menuOpen == true && toggleMenuOpen()
+    },[])
 
     return(
         <div

@@ -1,15 +1,13 @@
 'use client'
-import { useState } from 'react'
-import { HiOutlineMenu } from "react-icons/hi";
-import { HiX } from "react-icons/hi";
-import { HiUserAdd } from "react-icons/hi";
-import { HiSearch } from "react-icons/hi";
+import { useState, useRef, useEffect } from 'react'
+import { HiOutlineMenu, HiUserAdd, HiSearch } from "react-icons/hi";
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useMyContext } from '@/providers/theme'
 
 export default function Menu() {
+    const inp = useRef<HTMLInputElement>(null)
     const states:any = useMyContext()
     const { theme, toggleTheme, menuOpen, toggleMenuOpen, userS, keyword, setKeyword } = states
     
@@ -82,7 +80,12 @@ export default function Menu() {
                 )}
 
                     <div
-                        onClick={() => setOpenSearch(true)}
+                        onClick={() => {
+                            setOpenSearch(true)
+                            if(inp.current){
+                                inp.current.focus()
+                            }
+                        }}
                         className={`
                             flex justify-center py-1 items-center flex-col rounded-[8px] hover:opacity-50 cursor-pointer
                         `}
@@ -130,13 +133,16 @@ export default function Menu() {
                         e.preventDefault()
                         setKeyword(inputValue)
                         setOpenSearch(false)
+                        if(inp.current){
+                            inp.current.blur()
+                        }
                         setInputValue('')
                     }}
                     className={`
                         w-10/12 flex flex-row rounded-[8px] overflow-hidden mt-[100px] justify-center
                     `}
                 >
-                    <input 
+                    <input
                         type='text'
                         placeholder='pesquisar na techstore'
                         value={inputValue}
@@ -149,6 +155,7 @@ export default function Menu() {
                             rounded-tl-[8px] rounded-bl-[8px] lg:w-6/12
                             placeholder:${theme == 'light' ? 'text-black' : 'text-white'} placeholder:opacity-80 capitalize
                         `}
+                        ref={inp}
                     />
                     <input type='submit'
                         className={`w-[30px] border border-solid h-[30px] flex rounded-tr-[8px] rounded-br-[8px] items-center justify-center

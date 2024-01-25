@@ -21,7 +21,6 @@ export default function WebSocketClient() {
   
 
   useEffect(() => {
-    menuOpen == true && toggleMenuOpen()
     const ws = new WebSocket('wss://techstore-backend.onrender.com');
   
     ws.addEventListener('open', (event) => {
@@ -68,6 +67,10 @@ export default function WebSocketClient() {
   useEffect(() => {
     rolarAteOFinal()
   },[messages])
+
+  useEffect(() => {
+    menuOpen == true && toggleMenuOpen()
+  },[])
 
   const rolarAteOFinal = () => {
     if (chatBox.current) {
