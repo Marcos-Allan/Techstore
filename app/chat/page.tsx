@@ -145,7 +145,7 @@ export default function WebSocketClient() {
         </div>
 
         <form
-          className={`w-full h-[60px] fixed bottom-0 left-0 flex flex-row items-center justify-center mt-3 px-4 pb-3 border-t pt-3
+          className={`w-full lg:w-[85.7%] h-[60px] fixed bottom-0 right-0 flex flex-row items-center justify-center mt-3 px-4 pb-3 border-t pt-3
             ${theme == 'light' ? 'border-h-gray-300' : 'border-h-white-200'}
           `}
           onSubmit={handleSubmit}

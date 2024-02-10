@@ -1,13 +1,9 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-// CLIENT
 import { getProductPage, getProducts } from "@/app//actions"
-// SERVER
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-// CLIENT
 import { useMyContext } from '@/providers/theme'
-// CLIENT
 
 interface Products {
   image: string,
@@ -26,33 +22,26 @@ import CategoriesLoading from "@/app/components/CategoriesLoading"
 import Categories from "@/app/components/Categories"
 import Screen from '@/app/components/Screen'
 import Pagination from '@/app/components/Pagination'
-import Loader from './components/Loader'
 
 export default function Home() {
 
   const [produtos, setProdutos] = useState<any>()
-  // CLIENT
+  const [loading, setLoading] = useState<boolean>(true)
   const states:any = useMyContext()
-  // CLIENT
   const { keyword, setKeyword } = states
-  // CLIENT
   
   const searchParams = useSearchParams()
-  // CLIENT
   const [page, setPage] = useState<string>(searchParams.get('page')?.toString() ? searchParams.get('page')?.toString() as string : '1')
-  // CLIENT
 
   const { replace } = useRouter()
-  // CLIENT
   const pathname = usePathname()
-  // CLIENT
   
   const loadProducts = useCallback(async () => {
-    // const proods = await getProducts()
+    setProdutos([])
+    setLoading(false)
     const proods = await getProductPage(page as any, keyword as string)
     setProdutos(proods)
   },[page, keyword])
-  // SERVER
 
   const paramsS = useCallback((page:string, keyword:string) => {
     const params = new URLSearchParams(searchParams)
@@ -73,7 +62,6 @@ export default function Home() {
 
     replace(`${pathname}?${params.toString()}`)
   },[pathname, replace, searchParams, setKeyword])
-  //CLIENT
   
   useEffect(() => {
     paramsS(page, keyword)
@@ -111,7 +99,20 @@ export default function Home() {
           />
         </Suspense>
       )):(
-        <Loader />
+        <>
+          <CardProductLoading />
+          <CardProductLoading />
+          <CardProductLoading />
+          <CardProductLoading />
+        </>
+      )}
+      {produtos && produtos.length == 0 && loading == false && (
+          <>
+            <CardProductLoading />
+            <CardProductLoading />
+            <CardProductLoading />
+            <CardProductLoading />
+        </>
       )}
       <Pagination decreasePage={() => alterPage(page, -1)} increasePage={() => alterPage(page, 1)} page={page} limit={produtos} />
     </Screen>
