@@ -13,12 +13,16 @@ export default function WebSocketClient() {
   const chatBox:any = useRef()
   
   const states:any = useMyContext()
-  const { theme, menuOpen, toggleMenuOpen, userS } = states
+  const { theme, menuOpen, toggleMenuOpen, userS, setMessageCancelable } = states
+  
   const [yourId, setYourId] = useState<any>(Math.floor(Math.random() * 9999))
   const [messages, setMessages] = useState<Msg[]>([]);
   const [webSocket, setWebSocket] = useState<any>(null);
   const [newMessage, setNewMessage] = useState<string>('');
-  
+
+  useEffect(() => {
+    setMessageCancelable(true)
+  },[])
 
   useEffect(() => {
     const ws = new WebSocket('wss://techstore-backend.onrender.com');

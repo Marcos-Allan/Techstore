@@ -21,6 +21,7 @@ export const MyProvider = ({ children } : { children: React.ReactNode }) => {
     const [userS, setUserS] = useState<any>({ isLogged: false, name: '', email: '', image: '' })
     const [keyword, setKeyword] = useState<string>('')
     const [itemsCart, setItemsCart] = useState<ItemsCart[]>([])
+    const [messageCancelable, setMessageCancelable] = useState<boolean>(false)
 
     const addProductToCart = (newItem:any) => {
         setItemsCart((items) => [...items, {...newItem, quantidade: 1}])
@@ -69,7 +70,7 @@ export const MyProvider = ({ children } : { children: React.ReactNode }) => {
     }
     
     return (
-        <MyContext.Provider value={{ theme, toggleTheme, menuOpen, toggleMenuOpen, userS, toggleLogin, keyword, setKeyword, itemsCart, addProductToCart, removeProductToCart, increaseProduct, decreaseProduct }}>
+        <MyContext.Provider value={{ theme, toggleTheme, menuOpen, toggleMenuOpen, userS, toggleLogin, keyword, setKeyword, itemsCart, addProductToCart, removeProductToCart, increaseProduct, decreaseProduct, messageCancelable, setMessageCancelable }}>
             {children}
         </MyContext.Provider>
     )

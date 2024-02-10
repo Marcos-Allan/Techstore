@@ -4,7 +4,7 @@ import { useMyContext } from "@/providers/theme"
 export default function Screen({children}:{children:React.ReactNode}){
     
     const states:any = useMyContext()
-    const { theme } = states
+    const { theme, messageCancelable } = states
 
     return(
         <div
@@ -18,6 +18,7 @@ export default function Screen({children}:{children:React.ReactNode}){
                     ? 'lg:scrollbar-track-h-white-200 lg:scrollbar-thumb-h-gray-300'
                     : 'lg:scrollbar-track-h-gray-300 lg:scrollbar-thumb-h-white-200'
                 }
+                ${messageCancelable == false ? 'pb-[150px]' : 'pb-[0px]'}
             `}
         >
             {children}

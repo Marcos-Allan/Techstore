@@ -6,13 +6,17 @@ import { useEffect, useState } from "react"
 export default function Cart(){
 
     const states:any = useMyContext()
-    const { theme, itemsCart, menuOpen, toggleMenuOpen } = states
+    const { theme, itemsCart, menuOpen, toggleMenuOpen, setMessageCancelable } = states
 
     const [items, setItems] = useState<any[]>([])
 
     useEffect(() => {
         setItems(itemsCart)
     },[itemsCart])
+
+    useEffect(() => {
+        setMessageCancelable(true)
+    },[])
 
     useEffect(() => {
         menuOpen == true && toggleMenuOpen()

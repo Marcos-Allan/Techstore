@@ -4,6 +4,7 @@ import { Aldrich } from 'next/font/google'
 
 import { Provider } from '@/providers'
 import SideNav from './components/SideNav'
+import Message from './components/Message'
 
 const aldrich = Aldrich({ subsets: ['latin'], weight: ['400'] })
 
@@ -21,6 +22,7 @@ export default function RootLayout({children}) {
           <div className="relative h-screen flex flex-row">
             <SideNav />
             {children}
+            <Message />
           </div>
         </body>
       </html>

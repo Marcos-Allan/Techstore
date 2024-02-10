@@ -28,8 +28,16 @@ export default function Home() {
   const [produtos, setProdutos] = useState<any>()
   const [loading, setLoading] = useState<boolean>(true)
   const states:any = useMyContext()
-  const { keyword, setKeyword } = states
+  const { keyword, setKeyword, setMessageCancelable, userS } = states
   
+  useEffect(() => {
+    if(userS.isLogged == false){
+      setMessageCancelable(false)
+    }else{
+      setMessageCancelable(true)
+    }
+  },[])
+
   const searchParams = useSearchParams()
   const [page, setPage] = useState<string>(searchParams.get('page')?.toString() ? searchParams.get('page')?.toString() as string : '1')
 
@@ -37,10 +45,11 @@ export default function Home() {
   const pathname = usePathname()
   
   const loadProducts = useCallback(async () => {
+    setLoading(true)
     setProdutos([])
-    setLoading(false)
     const proods = await getProductPage(page as any, keyword as string)
     setProdutos(proods)
+    setLoading(false)
   },[page, keyword])
 
   const paramsS = useCallback((page:string, keyword:string) => {
@@ -84,7 +93,7 @@ export default function Home() {
       <Suspense fallback={<CategoriesLoading />}>
         <Categories />
       </Suspense>
-      {produtos ? produtos.map((product:Products, index:number) => (
+      {produtos && produtos.length > 0 && produtos.map((product:Products, index:number) => (
         <Suspense key={index} fallback={<CardProductLoading />}>
           <CardProduct
             descont={product.descont}
@@ -98,20 +107,13 @@ export default function Home() {
             description={product.description}
           />
         </Suspense>
-      )):(
+      ))}
+      {loading == true && (
         <>
           <CardProductLoading />
           <CardProductLoading />
           <CardProductLoading />
           <CardProductLoading />
-        </>
-      )}
-      {produtos && produtos.length == 0 && loading == false && (
-          <>
-            <CardProductLoading />
-            <CardProductLoading />
-            <CardProductLoading />
-            <CardProductLoading />
         </>
       )}
       <Pagination decreasePage={() => alterPage(page, -1)} increasePage={() => alterPage(page, 1)} page={page} limit={produtos} />

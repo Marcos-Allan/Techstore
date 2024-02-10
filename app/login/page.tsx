@@ -28,9 +28,13 @@ export default function Login() {
     }
 
     const states:any = useMyContext()
-    const { theme, userS, toggleLogin} = states
+    const { theme, userS, toggleLogin, setMessageCancelable } = states
 
     const [loading, setLoading] = useState<boolean>(true)
+
+    useEffect(() => {
+        setMessageCancelable(true)
+    },[])
 
     useEffect(() => {
         getRedirectResult(auth).then(function(result) {
