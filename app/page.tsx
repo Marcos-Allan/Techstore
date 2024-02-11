@@ -44,12 +44,14 @@ export default function Home() {
   const { replace } = useRouter()
   const pathname = usePathname()
   
-  const loadProducts = useCallback(async () => {
+  const loadProducts = useCallback(async () => {setProdutos([])
     setLoading(true)
     setProdutos([])
     const proods = await getProductPage(page as any, keyword as string)
     setProdutos(proods)
-    setLoading(false)
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000);
   },[page, keyword])
 
   const paramsS = useCallback((page:string, keyword:string) => {
@@ -93,7 +95,7 @@ export default function Home() {
       <Suspense fallback={<CategoriesLoading />}>
         <Categories />
       </Suspense>
-      {produtos && produtos.length > 0 && produtos.map((product:Products, index:number) => (
+      {loading == false && produtos && produtos.map((product:Products, index:number) => (
         <Suspense key={index} fallback={<CardProductLoading />}>
           <CardProduct
             descont={product.descont}
