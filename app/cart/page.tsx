@@ -15,10 +15,6 @@ export default function Cart(){
     },[itemsCart])
 
     useEffect(() => {
-        setMessageCancelable(true)
-    },[])
-
-    useEffect(() => {
         menuOpen == true && toggleMenuOpen()
     },[])
 

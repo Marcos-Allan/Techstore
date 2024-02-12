@@ -18,7 +18,6 @@ export default function Screen({children}:{children:React.ReactNode}){
                     ? 'lg:scrollbar-track-h-white-200 lg:scrollbar-thumb-h-gray-300'
                     : 'lg:scrollbar-track-h-gray-300 lg:scrollbar-thumb-h-white-200'
                 }
-                ${messageCancelable == false ? 'pb-[150px]' : 'pb-[0px]'}
             `}
         >
             {children}

@@ -21,10 +21,6 @@ export default function WebSocketClient() {
   const [newMessage, setNewMessage] = useState<string>('');
 
   useEffect(() => {
-    setMessageCancelable(true)
-  },[])
-
-  useEffect(() => {
     const ws = new WebSocket('wss://techstore-backend.onrender.com');
   
     ws.addEventListener('open', (event) => {
