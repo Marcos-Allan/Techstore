@@ -54,6 +54,10 @@ export default function Home() {
     }, 1000);
   },[page, keyword])
 
+  useEffect(() => {
+    setPage('1')
+  },[keyword])
+
   const paramsS = useCallback((page:string, keyword:string) => {
     const params = new URLSearchParams(searchParams)
 

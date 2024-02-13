@@ -18,6 +18,7 @@ export default function CardProductLoading(){
                 absolute top-[0%] left-[0%] text-[32px] p-1 rounded-[50%] w-[32px] h-[32px] border-[6px] border-solid
                 ${theme == 'light' ? 'bg-gray-400' : 'bg-gray-800'}
                 ${theme == 'light' ? 'border-gray-200' : 'border-gray-600'}
+                animate-pulse
                 `}
             >
                 {/* INFO BUTTON */}
@@ -26,6 +27,7 @@ export default function CardProductLoading(){
                 className={`
                 text-transparent text-1xl block text-center mt-5 mx-auto p-2 rounded-bl-3xl absolute -top-5 right-0 px-3 w-[60px] h-[40px]
                 ${theme == 'light' ? 'bg-gray-400' : 'bg-gray-800'}
+                animate-pulse
                 `}
             >
                 {/* INFO DESCONT */}
@@ -35,7 +37,9 @@ export default function CardProductLoading(){
                 className={`
                 mx-auto rounded-[8px] w-[250px] h-[148px]
                 ${theme == 'light' ? 'bg-gray-300' : 'bg-gray-700'}
+                animate-pulse
                 `}
+                
             >
                 {/* CARD IMAGE */}
             </div>
@@ -44,6 +48,7 @@ export default function CardProductLoading(){
                 className={`
                 flex justify-between items-center w-full mt-2 h-[20px] mb-[9px]
                 ${theme == 'light' ?  'bg-gray-300' : 'bg-gray-700'}
+                animate-pulse
                 `}
             >
                 {/* DIV PRICES */}
@@ -53,6 +58,7 @@ export default function CardProductLoading(){
                 className={`
                 flex flex-row-reverse w-full h-[20px] mb-[9px]
                 ${theme == 'light' ? 'bg-gray-300' : 'bg-gray-700'}
+                animate-pulse
                 `}
             >
                 {/* STARS PRODUCTS */}
@@ -62,6 +68,7 @@ export default function CardProductLoading(){
                 className={`
                 uppercase text-[12px] mt-2 text-center w-full my-2 mx-auto p-3 rounded-[8px] text-transparent
                 ${theme == 'light' ?  'bg-gray-400' : 'bg-gray-800'}
+                animate-pulse
                 `}
             >
                 {/* BUTTON ADD CART */}adicionar ao carrinho
