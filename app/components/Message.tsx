@@ -56,7 +56,9 @@ export default function Message() {
                         <div
                             className={`flex items-center justify-center w-9/12 relative h-[120px] pb-[84px] p-4 mb-2 rounded-[8px] overflow-hidden
                             ${theme == 'light' ?  'bg-h-white-200' : 'bg-h-gray-300'}
-                            opacity-90
+                            opacity-80
+                            border border-solid
+                            ${theme == 'light' ? 'border-h-gray-300' : 'border-h-white-200'}
                             `}
                         >
 

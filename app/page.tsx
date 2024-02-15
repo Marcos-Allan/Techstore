@@ -49,10 +49,15 @@ export default function Home() {
     setProdutos([])
     const proods = await getProductPage(page as any, keyword as string)
     setProdutos(proods)
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000);
   },[page, keyword])
+
+  useEffect(() => {
+    if(produtos && produtos.length >= 1){
+      setTimeout(() => {
+        setLoading(false)
+      }, 1000);
+    }
+  },[produtos])
 
   useEffect(() => {
     setPage('1')
